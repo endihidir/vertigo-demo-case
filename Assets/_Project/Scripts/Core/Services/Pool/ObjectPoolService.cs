@@ -19,10 +19,11 @@ namespace Core.Pool.Services
         private Transform _pooledObjectsRoot;
         public ObjectPoolService(PoolServiceConfigSO poolServiceConfigSo) => _poolServiceConfigSo = poolServiceConfigSo;
 
-        public void Initialize()
+        public IObjectPoolService Initialize()
         {
             var root = GameObject.Find(ROOT_NAME) ?? new GameObject(ROOT_NAME);
             _pooledObjectsRoot = root.transform;
+            return this;
         }
         
         public T GetObject<T>(T prefab, bool activate = true, int poolCount = 1, bool isLazy = true, bool showLogs = false) where T : Component

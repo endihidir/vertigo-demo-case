@@ -4,7 +4,7 @@ namespace Core.Pool.Services
 {
     public interface IObjectPoolService
     {
-        void Initialize();
+        IObjectPoolService Initialize();
         T GetObject<T>(T prefab, bool activate = true, int poolCount = 1, bool isLazy = true, bool showLogs = false) where T : Component;
         T GetObject<T>(bool activate = true, bool showLogs = false) where T : Component, IPooledObject;
         
