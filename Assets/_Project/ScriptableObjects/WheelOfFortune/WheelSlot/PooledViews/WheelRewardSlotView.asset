@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebc0db3a82fc5484a9819b4b56a32cbd, type: 3}
-  m_Name: PoolServiceConfig
+  m_Script: {fileID: 11500000, guid: 99e9be5f097254647a0f84b9c8d834e1, type: 3}
+  m_Name: WheelRewardSlotView
   m_EditorClassIdentifier: 
-  <PooledAssets>k__BackingField:
-  - {fileID: 11400000, guid: d7758a7e5b32c254ab2e306cc2c89055, type: 2}
+  <IsLazy>k__BackingField: 1
+  <PoolSize>k__BackingField: 8
+  <PoolObject>k__BackingField: {fileID: 8399679451706170849, guid: 53ed9e2c5489c7742976551926cadc90,
+    type: 3}
