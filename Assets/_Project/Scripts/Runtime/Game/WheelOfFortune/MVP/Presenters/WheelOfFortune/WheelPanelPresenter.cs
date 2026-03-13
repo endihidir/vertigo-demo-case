@@ -1,4 +1,5 @@
 using System;
+using Game.Enums;
 using Game.Handlers;
 using Game.Views;
 
@@ -18,7 +19,16 @@ namespace Game.Presenters
 
         private void OnViewInitialized()
         {
+            var wheelVisuals = _wheelSlotViewHandler.GetWheelVisuals(WheelType.Silver);
             
+            _wheelPanelView.UpdateWheelVisuals(wheelVisuals);
+            
+            _wheelSlotViewHandler.PopulateSlotViews(WheelType.Silver, out var views);
+
+            foreach (var wheelSlotView in views)
+            {
+                SettleRewardView(wheelSlotView);
+            }
         }
 
         public void SettleRewardView(WheelSlotView slotView)

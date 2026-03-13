@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 3
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502616654640785
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +113,8 @@ MonoBehaviour:
   - {fileID: 6714502617347987991}
   - {fileID: 6714502617384160045}
   - {fileID: 6714502616774839959}
+  <WheelSpinnerImage>k__BackingField: {fileID: 6714502617780264131}
+  <WheelIndicatorImage>k__BackingField: {fileID: 6714502617483112720}
 --- !u!1 &6714502616774839957
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 7
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502616782362937
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 0
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502617311357182
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 5
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502617384160043
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 6
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502617483112814
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 2
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502617780264129
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 4
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502618053063110
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SlotIndex>k__BackingField: 1
-  <RewardSlotView>k__BackingField: {fileID: 0}
+  <SlotView>k__BackingField: {fileID: 0}
 --- !u!1 &6714502618163865220
 GameObject:
   m_ObjectHideFlags: 0

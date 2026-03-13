@@ -1,7 +1,9 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Game.Configs;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,6 +16,9 @@ namespace Game.Views
         public event Action OnInitialize;
         [field: SerializeField, ReadOnly] public bool IsInitialized { get; private set; }
         [field: SerializeField, ReadOnly] public WheelRewardHolderView[] RewardHolders { get; private set; }
+        
+        [field: SerializeField] private Image WheelSpinnerImage { get; set; }
+        [field: SerializeField] private Image WheelIndicatorImage { get; set; }
 
 #if UNITY_EDITOR
         private void OnValidate()
@@ -37,6 +42,12 @@ namespace Game.Views
         {
             IsInitialized = true;
             OnInitialize?.Invoke();
+        }
+
+        public void UpdateWheelVisuals(WheelVisualData wheelVisualData)
+        {
+            WheelSpinnerImage.sprite = wheelVisualData.SpinnerSprite;
+            WheelIndicatorImage.sprite = wheelVisualData.IndicatorSprite;
         }
     }
 }

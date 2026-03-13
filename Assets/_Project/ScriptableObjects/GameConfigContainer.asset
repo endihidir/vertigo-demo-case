@@ -16,5 +16,7 @@ MonoBehaviour:
   <IsMultitouchEnabled>k__BackingField: 1
   <PoolServiceConfig>k__BackingField: {fileID: 11400000, guid: b946f628027bd8b449d9cfc08140c96c,
     type: 2}
+  <RewardVisualConfigContainer>k__BackingField: {fileID: 11400000, guid: 7be9d33a990de7d4b97ecd24f6fe8331,
+    type: 2}
   <WheelOfFortuneConfigContainer>k__BackingField: {fileID: 11400000, guid: 1e4a5876ccd19c543900ba399be8114f,
     type: 2}

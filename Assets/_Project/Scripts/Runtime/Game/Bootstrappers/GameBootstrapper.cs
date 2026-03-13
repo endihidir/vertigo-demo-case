@@ -34,8 +34,9 @@ namespace Game.Bootstrappers
             IObjectPoolService poolService = new ObjectPoolService(GameConfigContainer.PoolServiceConfig).Initialize();
             ISlotViewFactory slotViewFactory = new SlotViewFactory(poolService);
 
-            var wheelOfFortuneConfigContainer = GameConfigContainer.WheelOfFortuneConfigContainer;
-            WheelOfFortuneBootstrapper?.Initialize(wheelOfFortuneConfigContainer, slotViewFactory);
+            var wheelConfigContainer = GameConfigContainer.WheelOfFortuneConfigContainer;
+            var rewardVisualContainer = GameConfigContainer.RewardVisualConfigContainer;
+            WheelOfFortuneBootstrapper?.Initialize(slotViewFactory, wheelConfigContainer, rewardVisualContainer);
         }
     }
 }

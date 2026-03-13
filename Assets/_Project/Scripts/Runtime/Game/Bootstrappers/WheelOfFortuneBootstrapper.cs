@@ -1,4 +1,5 @@
 using Game.Configs;
+using Game.Data;
 using Game.Factories;
 using Game.Handlers;
 using Game.Presenters;
@@ -11,9 +12,9 @@ namespace Game.Installers
     {
         [field: SerializeField] private WheelPanelView WheelPanelView { get; set; }
         
-        public void Initialize(WheelOfFortuneConfigContainerSO configContainer, ISlotViewFactory slotViewFactory)
+        public void Initialize(ISlotViewFactory slotViewFactory, WheelOfFortuneConfigContainerSO wheelConfigContainer, RewardVisualConfigContainerSO rewardVisualContainer)
         {
-            var wheelSlotViewHandler = new WheelSlotViewHandler(slotViewFactory, configContainer);
+            var wheelSlotViewHandler = new WheelSlotViewHandler(slotViewFactory, wheelConfigContainer, rewardVisualContainer);
             var wheelOfFortunePresenter = new WheelPanelPresenter(WheelPanelView, wheelSlotViewHandler);
             WheelPanelView.Initialize();
         }

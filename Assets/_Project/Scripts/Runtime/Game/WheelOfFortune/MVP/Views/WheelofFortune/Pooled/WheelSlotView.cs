@@ -1,19 +1,21 @@
-using Game.Data;
+using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Views
 {
     public class WheelSlotView : BaseSlotView
     {
-        [field: SerializeField] public int SlotIndex { get; private set; }
-        [field: SerializeField] public RewardDefinition RewardDefinition { get; private set; }
+        [field: SerializeField, ReadOnly] public int SlotIndex { get; private set; }
+        [field: SerializeField] private Image Icon { get; set; }
+        [field: SerializeField] private TextMeshProUGUI Value { get; set; }
 
         public void SetParent(Transform parent) => transform.SetParent(parent, false);
-
-        public void ApplyData(int slotIndex, RewardDefinition rewardDefinition)
-        {
-            SlotIndex = slotIndex;
-            RewardDefinition = rewardDefinition;
-        }
+        
+        public void SetImage(Sprite sprite) => Icon.sprite = sprite;
+        public void SetValue(string text) => Value?.SetText(text);
+        public void SetSlotIndex(int slotIndex) => SlotIndex = slotIndex;
+        public void SetActiveValueTxt(bool value) => Value.gameObject.SetActive(value);
     }
 }

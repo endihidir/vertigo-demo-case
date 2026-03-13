@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d938bf05e12455ca618051618b9ff52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 8399679451677971157}
+  <Value>k__BackingField: {fileID: 8399679451250417627}
   <SlotIndex>k__BackingField: 0
 --- !u!114 &436830744
 MonoBehaviour:

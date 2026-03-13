@@ -1,4 +1,5 @@
 using Core.Configs;
+using Game.Data;
 using UnityEngine;
 
 namespace Game.Configs
@@ -9,6 +10,7 @@ namespace Game.Configs
         [field: SerializeField] public int TargetFrameRate { get; private set; } = 60;
         [field: SerializeField] public bool IsMultitouchEnabled { get; private set; } = true;
         [field: SerializeField] public PoolServiceConfigSO PoolServiceConfig { get; private set; }
+        [field: SerializeField] public RewardVisualConfigContainerSO RewardVisualConfigContainer { get; private set; }
         [field: SerializeField] public WheelOfFortuneConfigContainerSO WheelOfFortuneConfigContainer { get; private set; }
     }
 }
