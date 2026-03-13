@@ -1,5 +1,5 @@
 using System;
-using Game.Factories;
+using Game.Handlers;
 using Game.Views;
 
 namespace Game.Presenters
@@ -7,12 +7,12 @@ namespace Game.Presenters
     public sealed class WheelPanelPresenter : IDisposable
     {
         private readonly IWheelPanelView _wheelPanelView;
-        private readonly ISlotViewFactory _slotViewFactory;
+        private readonly IWheelSlotViewHandler _wheelSlotViewHandler;
         
-        public WheelPanelPresenter(IWheelPanelView view, ISlotViewFactory slotViewFactory)
+        public WheelPanelPresenter(IWheelPanelView view, IWheelSlotViewHandler wheelSlotViewHandler)
         {
             _wheelPanelView = view;
-            _slotViewFactory = slotViewFactory;
+            _wheelSlotViewHandler = wheelSlotViewHandler;
             _wheelPanelView.OnInitialize += OnViewInitialized;
         }
 
@@ -21,13 +21,13 @@ namespace Game.Presenters
             
         }
 
-        public void SettleRewardView(WheelRewardSlotView rewardSlotView)
+        public void SettleRewardView(WheelSlotView slotView)
         {
             foreach (var rewardHolder in _wheelPanelView.RewardHolders)
             {
-                if(rewardHolder.SlotIndex != rewardSlotView.SlotIndex) continue;
+                if(rewardHolder.SlotIndex != slotView.SlotIndex) continue;
                 
-                rewardHolder.SetRewardSlotView(rewardSlotView);
+                rewardHolder.SetRewardSlotView(slotView);
             }
         }
 

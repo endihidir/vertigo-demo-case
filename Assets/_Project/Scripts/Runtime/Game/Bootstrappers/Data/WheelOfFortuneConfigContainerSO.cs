@@ -7,7 +7,7 @@ namespace Game.Configs
     [CreateAssetMenu(fileName = "WheelOfFortuneConfigContainer", menuName = "Game/Containers/WheelOfFortuneConfigContainer")]
     public class WheelOfFortuneConfigContainerSO : ScriptableObject
     {
-        [field: SerializeField] private WheelConfigSO[] WheelConfigs { get; set; }
+        [field: SerializeField] public WheelConfigSO[] WheelConfigs { get; private set; }
         
         public WheelConfigSO GetWheelConfig(WheelType wheelType)
         {

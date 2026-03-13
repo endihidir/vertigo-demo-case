@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f665475fe9e28d4ea9ec2d06f412d8e, type: 3}
+  m_Name: Visual_Weapon_Shotgun_Tier1
+  m_EditorClassIdentifier: 
+  <MinAmount>k__BackingField: 0
+  <Icon>k__BackingField: {fileID: 21300000, guid: 0a68d66327f7b724d96d5f2d7fbbb99d,
+    type: 3}

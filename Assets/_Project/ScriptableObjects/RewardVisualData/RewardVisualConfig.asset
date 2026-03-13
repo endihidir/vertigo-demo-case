@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28f2b132d6f4f0d9644c330f823f8ba, type: 3}
+  m_Name: RewardVisualConfig
+  m_EditorClassIdentifier: 
+  <RewardVisuals>k__BackingField:
+  - <Id>k__BackingField: rw_cash_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 7bc1cab2b771ec440b465d2b75728ab1, type: 2}
+  - <Id>k__BackingField: rw_gold_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 77894ba4753be2a4e9ca3299f3ba9e58, type: 2}
+  - <Id>k__BackingField: rw_chest_silver_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 5b9c1942cc9f4db4498e6eba11ec6bcb, type: 2}
+  - <Id>k__BackingField: rw_chest_bronze_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: d523f6cacbdbb6e48a20636e8d8a8be8, type: 2}
+  - <Id>k__BackingField: rw_chest_gold_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 96069797c395b344ba19123aeddf3599, type: 2}
+  - <Id>k__BackingField: rw_chest_small_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: ec27577e753a9b448b4964ae515c962f, type: 2}
+  - <Id>k__BackingField: rw_chest_standart_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 38999531f75e01c45a40aa70063f8ec2, type: 2}
+  - <Id>k__BackingField: rw_chest_big_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 01ec3add596be324388495d7753823a9, type: 2}
+  - <Id>k__BackingField: rw_chest_super_01
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 421b2e026aebf4245af3f04c5f4d32f5, type: 2}
+  - <Id>k__BackingField: rw_shotgun_tier1
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: df7bc5454a5aab740b718e3aefe880ed, type: 2}
+  - <Id>k__BackingField: rw_rifle_tier2
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 441f72bccef6c1443a3a628557717f29, type: 2}
+  - <Id>k__BackingField: rw_shotgun_tier3
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: df5303e7ab54d28479219b0c4c0f7249, type: 2}
+  - <Id>k__BackingField: rw_smg_tier3
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 59a7fa25e5d09014bbf29b4ff7ecdfa4, type: 2}
+  - <Id>k__BackingField: rw_sniper_tier3
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 228fb032e487a1a4c9069ae71e2a8bdf, type: 2}
+  - <Id>k__BackingField: rw_mle_tier2
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 7fea201bca9b72849b249903039ce42e, type: 2}
+  - <Id>k__BackingField: rw_m26_tier1
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: fa054e0b4b969e449a52b6bd5ed4e28d, type: 2}
+  - <Id>k__BackingField: rw_m67_tier1
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 68d621c9e8e7fc2439d33a791bc617f0, type: 2}
+  - <Id>k__BackingField: rw_m67_tier1
+    <RewardVisuals>k__BackingField:
+    - {fileID: 11400000, guid: 68d621c9e8e7fc2439d33a791bc617f0, type: 2}

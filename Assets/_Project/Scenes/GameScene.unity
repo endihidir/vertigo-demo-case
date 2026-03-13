@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162e3589b5f847af9533f9d46257323b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <WheelPanelView>k__BackingField: {fileID: 6714502617547585362}
 --- !u!1 &2018645453
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,3 +633,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec2081908bf2eb4284c99ba851d1af8, type: 3}
+--- !u!114 &6714502617547585362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6714502616654640787, guid: 2ec2081908bf2eb4284c99ba851d1af8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6714502617547585361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d79a4039cd3614fb27dda1f9c9577a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

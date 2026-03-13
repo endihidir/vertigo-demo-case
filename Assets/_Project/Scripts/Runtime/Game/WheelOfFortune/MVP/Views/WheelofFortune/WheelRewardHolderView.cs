@@ -6,12 +6,12 @@ namespace Game.Views
     public class WheelRewardHolderView : MonoBehaviour
     {
         [field: SerializeField] public int SlotIndex { get; private set; }
-        [field: SerializeField, ReadOnly] private WheelRewardSlotView RewardSlotView { get; set; }
+        [field: SerializeField, ReadOnly] private WheelSlotView SlotView { get; set; }
         
-        public void SetRewardSlotView(WheelRewardSlotView rewardSlotView)
+        public void SetRewardSlotView(WheelSlotView slotView)
         {
-            RewardSlotView = rewardSlotView;
-            RewardSlotView.SetParent(transform);
+            SlotView = slotView;
+            SlotView.SetParent(transform);
         }
     }
 }

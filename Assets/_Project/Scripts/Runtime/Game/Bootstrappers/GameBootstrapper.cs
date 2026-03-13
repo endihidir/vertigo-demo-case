@@ -1,5 +1,4 @@
 using Core.Pool.Services;
-using Core.SaveSystem;
 using Game.Configs;
 using Game.Factories;
 using Game.Installers;
@@ -32,11 +31,11 @@ namespace Game.Bootstrappers
             Application.targetFrameRate = GameConfigContainer.TargetFrameRate;
             Input.multiTouchEnabled = GameConfigContainer.IsMultitouchEnabled;
             
-            IJsonSaveService saveService = new JsonSaveService();
             IObjectPoolService poolService = new ObjectPoolService(GameConfigContainer.PoolServiceConfig).Initialize();
             ISlotViewFactory slotViewFactory = new SlotViewFactory(poolService);
-            
-            WheelOfFortuneBootstrapper?.Initialize(saveService, GameConfigContainer.WheelOfFortuneConfigContainer, slotViewFactory);
+
+            var wheelOfFortuneConfigContainer = GameConfigContainer.WheelOfFortuneConfigContainer;
+            WheelOfFortuneBootstrapper?.Initialize(wheelOfFortuneConfigContainer, slotViewFactory);
         }
     }
 }
