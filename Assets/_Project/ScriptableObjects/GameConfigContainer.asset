@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04399287cf74039906ea992983ad108, type: 3}
   m_Name: GameConfigContainer
   m_EditorClassIdentifier: 
-  <TargetFrameRate>k__BackingField: 60
+  <TargetFrameRate>k__BackingField: 300
   <IsMultitouchEnabled>k__BackingField: 1
   <PoolServiceConfig>k__BackingField: {fileID: 11400000, guid: b946f628027bd8b449d9cfc08140c96c,
     type: 2}
