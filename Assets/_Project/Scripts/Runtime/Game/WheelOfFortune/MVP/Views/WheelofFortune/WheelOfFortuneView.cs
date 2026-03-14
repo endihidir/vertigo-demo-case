@@ -1,6 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Game.Configs;
+using Game.Modules;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,10 +12,12 @@ using UnityEditor;
 
 namespace Game.Views
 {
-    public class WheelPanelView : MonoBehaviour, IWheelPanelView
+    public class WheelOfFortuneView : MonoBehaviour, IWheelOfFortuneView
     {
         public event Action OnInitialize;
         [field: SerializeField, ReadOnly] public bool IsInitialized { get; private set; }
+        [field: SerializeField, ReadOnly] public Button SpinButton { get; private set; }
+        [field: SerializeField, ReadOnly] public WheelSpinAnimationModule SpinAnimationModule { get; private set; }
         [field: SerializeField, ReadOnly] public WheelRewardHolderView[] RewardHolders { get; private set; }
         
         [field: SerializeField] private Image WheelSpinnerImage { get; set; }
@@ -25,6 +28,15 @@ namespace Game.Views
         {
             RewardHolders = GetComponentsInChildren<WheelRewardHolderView>();
             
+            SpinAnimationModule = GetComponentInChildren<WheelSpinAnimationModule>();
+            
+            var allButtons = GetComponentsInChildren<Button>();
+            
+            foreach (var button in allButtons)
+            {
+                if(button.name.Contains("spin", StringComparison.OrdinalIgnoreCase)) SpinButton = button;
+            }
+            
             EditorUtility.SetDirty(this);
         }
 #endif
@@ -33,21 +45,23 @@ namespace Game.Views
 
         public async UniTask SetActive(bool value)
         {
-            // TODO: Use Prepared Animation Module
             gameObject.SetActive(value);
             await UniTask.Yield();
-        }
-
-        private void RaiseInitialized()
-        {
-            IsInitialized = true;
-            OnInitialize?.Invoke();
         }
 
         public void UpdateWheelVisuals(WheelVisualData wheelVisualData)
         {
             WheelSpinnerImage.sprite = wheelVisualData.SpinnerSprite;
             WheelIndicatorImage.sprite = wheelVisualData.IndicatorSprite;
+        }
+        
+        public void SetSpinButtonInteractable(bool active) => SpinButton.interactable = active;
+       
+        private void RaiseInitialized()
+        {
+            SetSpinButtonInteractable(true);
+            IsInitialized = true;
+            OnInitialize?.Invoke();
         }
     }
 }

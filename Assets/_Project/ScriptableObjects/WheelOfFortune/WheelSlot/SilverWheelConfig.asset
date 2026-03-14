@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SilverWheelConfig
   m_EditorClassIdentifier: 
   <WheelType>k__BackingField: 1
+  <ValueMultiplier>k__BackingField: 1
   <WheelVisuals>k__BackingField:
     <IndicatorSprite>k__BackingField: {fileID: 21300000, guid: 3e39eb318ededcd4ebc8bc56fd897390,
       type: 3}
@@ -25,27 +26,24 @@ MonoBehaviour:
   - <SlotIndex>k__BackingField: 0
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: rw_cash_01
+      <Id>k__BackingField: cash_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 0
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 100
       <Label>k__BackingField: 
   - <SlotIndex>k__BackingField: 1
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: rw_gold_01
+      <Id>k__BackingField: gold_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 1
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
   - <SlotIndex>k__BackingField: 2
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: rw_chest_silver_01
+      <Id>k__BackingField: chest_silver_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 2
       <ValueType>k__BackingField: 1
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
@@ -54,43 +52,38 @@ MonoBehaviour:
     <RewardDefinition>k__BackingField:
       <Id>k__BackingField: rw_cash_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 0
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 0
       <Label>k__BackingField: 
   - <SlotIndex>k__BackingField: 4
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: rw_cash_01
+      <Id>k__BackingField: cash_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 0
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 10
       <Label>k__BackingField: 
   - <SlotIndex>k__BackingField: 5
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: rw_gold_01
+      <Id>k__BackingField: gold_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 1
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 5
       <Label>k__BackingField: 
   - <SlotIndex>k__BackingField: 6
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: rw_chest_small_01
+      <Id>k__BackingField: chest_small_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 2
-      <ValueType>k__BackingField: 0
-      <BaseValue>k__BackingField: 2
+      <ValueType>k__BackingField: 1
+      <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
   - <SlotIndex>k__BackingField: 7
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: rw_cash_01
+      <Id>k__BackingField: cash_01
       <Name>k__BackingField: 
-      <Category>k__BackingField: 0
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 50
       <Label>k__BackingField: 

@@ -4,6 +4,7 @@ using Game.Data;
 using Game.Enums;
 using Game.Factories;
 using Game.Views;
+using UnityEngine;
 
 namespace Game.Handlers
 {
@@ -45,7 +46,7 @@ namespace Game.Handlers
                 
                 var slotView = WheelSlotViews[i];
                 
-                PrepareSlotView(slotData, slotView);
+                PrepareSlotView(slotData, slotView, wheelConfig.BombIcon);
             }
 
             wheelSlotViews = WheelSlotViews;
@@ -65,29 +66,27 @@ namespace Game.Handlers
 
                 var slotView = _slotViewFactory.GetSlot<WheelSlotView>();
 
-                PrepareSlotView(slotData, slotView);
+                PrepareSlotView(slotData, slotView, wheelConfig.BombIcon);
 
                 wheelSlotViews[i] = slotView;
             }
+
+            WheelSlotViews = wheelSlotViews;
         }
 
-        private void PrepareSlotView(WheelSlotData slotData, WheelSlotView slotView)
+        private void PrepareSlotView(WheelSlotData slotData, WheelSlotView slotView, Sprite bombIcon)
         {
-            var rewardId = slotData.RewardDefinition.Id;
+            var rewardDefinition = slotData.RewardDefinition;
 
-            var rewardVisualData = _rewardVisualContainer.GetVisualData(rewardId);
-                
+            var rewardVisualData = _rewardVisualContainer.GetVisualData(rewardDefinition.Id);
+            
+            var isBomb = slotData.IsBomb;
+            var icon = isBomb ? bombIcon : rewardVisualData.Icon;
+            slotView.SetImage(icon);
             slotView.SetSlotIndex(slotData.SlotIndex);
             
-            slotView.SetImage(rewardVisualData.Icon);
-
-            var baseValue = slotData.RewardDefinition.BaseValue;
-            
-            slotView.SetValue($"X{baseValue}");
-            
-            var isUniqueItem = slotData.RewardDefinition.IsUniqueItem;
-            
-            slotView.SetActiveValueTxt(!isUniqueItem);
+            var isUniqueItem = rewardDefinition.IsUniqueItem;
+            slotView.SetActiveValueTxt(!isBomb && !isUniqueItem);
         }
 
         private void ResetSlotViews()

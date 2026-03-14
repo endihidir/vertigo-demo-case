@@ -10,6 +10,7 @@ namespace Game.Configs
     public class WheelConfigSO : ScriptableObject
     {
         [field: SerializeField] public WheelType WheelType { get; private set; }
+        [field: SerializeField] public float ValueMultiplier { get; private set; } = 1f;
         [field: SerializeField] public WheelVisualData WheelVisuals { get; private set; }
         
         [field: SerializeField, ShowIf(nameof(IsSilver))] public Sprite BombIcon { get; private set; }
