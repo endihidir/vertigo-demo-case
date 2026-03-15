@@ -59,7 +59,7 @@ namespace Core.SaveSystem
 
         public void SaveToPrefs<T>(string key, T data)
         {
-            var jsonData = JsonUtility.ToJson(data);
+            var jsonData= JsonUtility.ToJson(data);
             
             PlayerPrefs.SetString(key, jsonData);
         }
@@ -71,7 +71,7 @@ namespace Core.SaveSystem
                 SaveToPrefs(key, defaultData);
             }
             
-            var jsonData = PlayerPrefs.GetString(key, string.Empty);
+            var jsonData= PlayerPrefs.GetString(key, string.Empty);
                 
             var data = JsonUtility.FromJson<T>(jsonData);
             

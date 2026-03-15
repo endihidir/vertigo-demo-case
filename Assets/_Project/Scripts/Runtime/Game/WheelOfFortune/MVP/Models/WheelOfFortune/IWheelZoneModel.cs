@@ -1,5 +1,4 @@
 using System;
-using Game.Enums;
 
 namespace Game.Models
 {
@@ -9,6 +8,5 @@ namespace Game.Models
         int ZoneCounter { get; }
         void MoveNextZone();
         void ResetZone();
-        WheelType GetWheelType();
     }
 }

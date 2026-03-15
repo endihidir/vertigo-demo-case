@@ -636,12 +636,7 @@ PrefabInstance:
     - target: {fileID: 6714502616654640785, guid: 2ec2081908bf2eb4284c99ba851d1af8,
         type: 3}
       propertyPath: m_Name
-      value: ui_panel_wheel_of_fortune
-      objectReference: {fileID: 0}
-    - target: {fileID: 6714502616654640785, guid: 2ec2081908bf2eb4284c99ba851d1af8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: ui_wheel_of_fortune_view
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec2081908bf2eb4284c99ba851d1af8, type: 3}

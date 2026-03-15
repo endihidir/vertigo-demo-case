@@ -21,12 +21,5 @@ namespace Game.Models
             
             OnZoneUpdate?.Invoke();
         }
-
-        public WheelType GetWheelType()
-        {
-            if (ZoneCounter % 30 == 0) return WheelType.Gold;
-            if (ZoneCounter % 5 == 0) return WheelType.Bronze;
-            return WheelType.Silver;
-        }
     }
 }

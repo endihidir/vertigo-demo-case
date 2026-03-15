@@ -31,6 +31,9 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 100
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0
   - <SlotIndex>k__BackingField: 1
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
@@ -39,6 +42,9 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0
   - <SlotIndex>k__BackingField: 2
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
@@ -47,6 +53,9 @@ MonoBehaviour:
       <ValueType>k__BackingField: 1
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0
   - <SlotIndex>k__BackingField: 3
     <WheelSlotType>k__BackingField: 1
     <RewardDefinition>k__BackingField:
@@ -55,6 +64,9 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 0
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0
   - <SlotIndex>k__BackingField: 4
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
@@ -63,6 +75,9 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 10
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0
   - <SlotIndex>k__BackingField: 5
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
@@ -71,6 +86,9 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 5
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0
   - <SlotIndex>k__BackingField: 6
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
@@ -79,6 +97,9 @@ MonoBehaviour:
       <ValueType>k__BackingField: 1
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0
   - <SlotIndex>k__BackingField: 7
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
@@ -87,3 +108,6 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 50
       <Label>k__BackingField: 
+    <WeightThresholds>k__BackingField:
+    - <FromZone>k__BackingField: 0
+      <Weight>k__BackingField: 0

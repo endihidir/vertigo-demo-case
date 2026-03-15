@@ -7,6 +7,7 @@ namespace Game.Data
         List<RewardEntry> RewardEntries { get; }
         int GetAmount(string itemId);
         void AddAmount(string itemId, int amount);
+        void Reset();
         void SaveRewards();
     }
 }

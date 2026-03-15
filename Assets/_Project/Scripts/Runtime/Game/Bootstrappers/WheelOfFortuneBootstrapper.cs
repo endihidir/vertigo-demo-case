@@ -18,15 +18,17 @@ namespace Game.Installers
         public void Initialize(ISlotViewFactory slotViewFactory, WheelOfFortuneConfigContainerSO wheelConfigContainer, RewardVisualConfigContainerSO rewardVisualContainer)
         {
             IWheelZoneModel wheelZoneModel = new WheelZoneModel();
-            IWheelRewardCalculator rewardCalculator = new WheelRewardCalculator(wheelConfigContainer);
+            IWheelRewardProvider rewardProvider = new WheelRewardProvider(wheelConfigContainer, rewardVisualContainer);
+            IWheelSpinResolver wheelSpinResolver = new WheelSpinResolver(wheelConfigContainer);
             IWheelRewardDatabase rewardDatabase = new WheelRewardDatabase();
             
-            var wheelSlotViewHandler = new WheelSlotViewHandler(slotViewFactory, wheelConfigContainer, rewardVisualContainer);
-            _wheelOfFortunePresenter = new WheelOfFortunePresenter(wheelZoneModel, WheelOfFortuneView, wheelSlotViewHandler, rewardCalculator, rewardDatabase);
+            IWheelSlotViewHandler wheelSlotViewHandler = new WheelSlotViewHandler(slotViewFactory, wheelConfigContainer, rewardVisualContainer);
+            IWheelCollectedRewardSlotHandler collectedRewardSlotHandler = new WheelCollectedRewardSlotHandler(slotViewFactory, rewardVisualContainer, wheelConfigContainer, rewardDatabase);
+            
+            _wheelOfFortunePresenter = new WheelOfFortunePresenter(wheelZoneModel, WheelOfFortuneView, wheelSlotViewHandler, rewardProvider, rewardDatabase, wheelSpinResolver, collectedRewardSlotHandler);
             WheelOfFortuneView.Initialize();
         }
-
-
+        
         private void OnDestroy()
         {
             _wheelOfFortunePresenter?.Dispose();

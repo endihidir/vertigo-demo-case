@@ -1,4 +1,5 @@
 using System.Linq;
+using Game.Data;
 using Game.Enums;
 using UnityEngine;
 
@@ -23,6 +24,16 @@ namespace Game.Configs
             wheelConfig = wheelSlotConfig;
             
             return wheelConfig;
+        }
+        
+        public WheelSlotData GetSlotDataById(string itemId)
+        {
+            foreach (var config in WheelConfigs)
+            foreach (var slot in config.WheelSlotData)
+                if (slot.RewardDefinition.Id == itemId)
+                    return slot;
+
+            return null;
         }
     }
 }

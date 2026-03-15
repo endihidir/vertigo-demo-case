@@ -1,10 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
-using Game.Configs;
-using Game.Modules;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -15,53 +12,21 @@ namespace Game.Views
     public class WheelOfFortuneView : MonoBehaviour, IWheelOfFortuneView
     {
         public event Action OnInitialize;
-        [field: SerializeField, ReadOnly] public bool IsInitialized { get; private set; }
-        [field: SerializeField, ReadOnly] public Button SpinButton { get; private set; }
-        [field: SerializeField, ReadOnly] public WheelSpinAnimationModule SpinAnimationModule { get; private set; }
-        [field: SerializeField, ReadOnly] public WheelRewardHolderView[] RewardHolders { get; private set; }
-        
-        [field: SerializeField] private Image WheelSpinnerImage { get; set; }
-        [field: SerializeField] private Image WheelIndicatorImage { get; set; }
+        [field: SerializeField, ReadOnly] public WheelSpinView WheelSpinView { get; private set; }
+        [field: SerializeField, ReadOnly] public WheelSpinResultView WheelSpinResultView { get; private set; }
+        [field: SerializeField, ReadOnly] public WheelRewardCollectView WheelRewardCollectView { get; private set; }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            RewardHolders = GetComponentsInChildren<WheelRewardHolderView>();
-            
-            SpinAnimationModule = GetComponentInChildren<WheelSpinAnimationModule>();
-            
-            var allButtons = GetComponentsInChildren<Button>();
-            
-            foreach (var button in allButtons)
-            {
-                if(button.name.Contains("spin", StringComparison.OrdinalIgnoreCase)) SpinButton = button;
-            }
-            
+            WheelSpinView = GetComponentInChildren<WheelSpinView>(true);
+            WheelSpinResultView = GetComponentInChildren<WheelSpinResultView>(true);
+            WheelRewardCollectView = GetComponentInChildren<WheelRewardCollectView>(true);
             EditorUtility.SetDirty(this);
         }
 #endif
 
-        public void Initialize() => SetActive(true).ContinueWith(RaiseInitialized).Forget();
-
-        public async UniTask SetActive(bool value)
-        {
-            gameObject.SetActive(value);
-            await UniTask.Yield();
-        }
-
-        public void UpdateWheelVisuals(WheelVisualData wheelVisualData)
-        {
-            WheelSpinnerImage.sprite = wheelVisualData.SpinnerSprite;
-            WheelIndicatorImage.sprite = wheelVisualData.IndicatorSprite;
-        }
-        
-        public void SetSpinButtonInteractable(bool active) => SpinButton.interactable = active;
-       
-        private void RaiseInitialized()
-        {
-            SetSpinButtonInteractable(true);
-            IsInitialized = true;
-            OnInitialize?.Invoke();
-        }
+        public void Initialize() => WheelSpinView.SetActiveAsync(true).ContinueWith(RaiseInitialized).Forget();
+        private void RaiseInitialized() => OnInitialize?.Invoke();
     }
 }
