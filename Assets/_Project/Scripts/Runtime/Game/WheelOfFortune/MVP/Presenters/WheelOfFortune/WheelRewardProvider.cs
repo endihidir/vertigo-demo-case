@@ -25,24 +25,18 @@ namespace Game.Handlers
             
             return _configContainer.GetWheelConfig(wheelType).GetWheelSlotData(slotIndex);
         }
-
-        public void PrepareSpinResultView(int slotIndex, int zoneCounter, WheelSpinResultView spinResultView)
+        
+        public SpinResultData GetSpinResultData(int slotIndex, int zoneCounter)
         {
-            var wheelSlotData = GetRewardSlotData(slotIndex, zoneCounter);
-            
-            if (wheelSlotData.IsBomb)
-            {
-                spinResultView.InitBombPanel();
-            }
-            else
-            {
-                var visualData = _rewardVisualContainer.GetVisualData(wheelSlotData.RewardDefinition.Id);
-                var calculatedValue = CalculateValue(slotIndex, zoneCounter);
-                var rewardTxt = FormatValue(slotIndex, calculatedValue, zoneCounter);
-                spinResultView.InitRewardPanel(visualData.Icon, rewardTxt);
-            }
-
-            spinResultView.SetActiveAsync(true).Forget();
+            var slotData = GetRewardSlotData(slotIndex, zoneCounter);
+    
+            if (slotData.IsBomb) return new SpinResultData(isBomb: true);
+    
+            var visualData = _rewardVisualContainer.GetVisualData(slotData.RewardDefinition.Id);
+            var calculatedValue = CalculateValue(slotIndex, zoneCounter);
+            var rewardText = FormatValue(slotIndex, calculatedValue, zoneCounter);
+    
+            return new SpinResultData(isBomb: false, visualData.Icon, rewardText);
         }
 
         public int CalculateValue(int slotIndex, int zoneCounter)

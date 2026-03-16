@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.SaveSystem;
@@ -11,11 +12,14 @@ namespace Game.Data
         private readonly IJsonSaveService _saveService;
         private readonly WheelRewardData _data;
         
-        public List<RewardEntry> RewardEntries => _data.entries;
+        public IReadOnlyList<RewardEntry> RewardEntries => _data.entries;
+        
+        public event Action<string> OnRewardAmountChanged;
+        public event Action OnRewardsReset;
 
-        public WheelRewardDatabase()
+        public WheelRewardDatabase(IJsonSaveService saveService)
         {
-            _saveService = new JsonSaveService();
+            _saveService = saveService;
             _data = _saveService.LoadFromPrefs(SAVE_KEY, new WheelRewardData());
         }
 
@@ -29,12 +33,17 @@ namespace Game.Data
         {
             var entry = GetOrCreateEntry(itemId);
             entry.amount += amount;
+            OnRewardAmountChanged?.Invoke(itemId);
         }
-        public void Reset() => _data.entries.Clear();
+        public void Reset()
+        {
+            if (_data.entries.Count == 0) return;
+            _data.entries.Clear();
+            OnRewardsReset?.Invoke();
+        }
 
         public void SaveRewards() => _saveService.SaveToPrefs(SAVE_KEY, _data);
         
-
         private RewardEntry GetOrCreateEntry(string itemId)
         {
             var entry = _data.entries.FirstOrDefault(e => e.id == itemId);

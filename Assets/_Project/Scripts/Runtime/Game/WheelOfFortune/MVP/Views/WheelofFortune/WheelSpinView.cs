@@ -61,6 +61,16 @@ namespace Game.Views
             WheelZoneTitleText.SetText(text);
         }
         
+        public void PlaceSlot(WheelSlotView slotView)
+        {
+            foreach (var holder in RewardHolders)
+            {
+                if (holder.SlotIndex != slotView.SlotIndex) continue;
+                slotView.SetParent(holder.transform);
+                return;
+            }
+        }
+        
         public void SetSpinButtonInteractable(bool active) => SpinButton.interactable = active;
         public void SetExitButtonInteractable(bool active) => ExitButton.interactable = active;
     }

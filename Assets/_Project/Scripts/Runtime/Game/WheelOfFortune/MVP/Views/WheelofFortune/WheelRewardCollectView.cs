@@ -2,10 +2,10 @@ using System;
 using Cysharp.Threading.Tasks;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine.UI;
 #endif
 
 namespace Game.Views
@@ -38,6 +38,6 @@ namespace Game.Views
             await UniTask.Yield();
         }
         
-        public void SettleReward(WheelCollectedRewardSlotView slotView) => slotView.SetParent(RewardContentTransform);
+        public void PlaceSlot(WheelCollectedRewardSlotView slotView) => slotView.SetParent(RewardContentTransform);
     }
 }

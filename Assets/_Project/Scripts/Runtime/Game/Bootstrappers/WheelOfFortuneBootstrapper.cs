@@ -1,3 +1,4 @@
+using Core.SaveSystem;
 using Game.Configs;
 using Game.Data;
 using Game.Factories;
@@ -17,10 +18,12 @@ namespace Game.Installers
         
         public void Initialize(ISlotViewFactory slotViewFactory, WheelOfFortuneConfigContainerSO wheelConfigContainer, RewardVisualConfigContainerSO rewardVisualContainer)
         {
+            IJsonSaveService jsonSaveService = new JsonSaveService();
+            IWheelRewardDatabase rewardDatabase = new WheelRewardDatabase(jsonSaveService);
             IWheelZoneModel wheelZoneModel = new WheelZoneModel();
+            
             IWheelRewardProvider rewardProvider = new WheelRewardProvider(wheelConfigContainer, rewardVisualContainer);
             IWheelSpinResolver wheelSpinResolver = new WheelSpinResolver(wheelConfigContainer);
-            IWheelRewardDatabase rewardDatabase = new WheelRewardDatabase();
             
             IWheelSlotViewHandler wheelSlotViewHandler = new WheelSlotViewHandler(slotViewFactory, wheelConfigContainer, rewardVisualContainer);
             IWheelCollectedRewardSlotHandler collectedRewardSlotHandler = new WheelCollectedRewardSlotHandler(slotViewFactory, rewardVisualContainer, wheelConfigContainer, rewardDatabase);
