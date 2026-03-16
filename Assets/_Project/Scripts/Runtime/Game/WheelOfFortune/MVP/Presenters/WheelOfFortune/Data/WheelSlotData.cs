@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Core.Extensions;
+using Core.Utils;
 using Game.Enums;
 using NaughtyAttributes;
 using UnityEngine;
@@ -28,10 +29,12 @@ namespace Game.Data
                 else
                     break;
             }
-
-            var weight = active?.Weight ?? 1f;
             
-            return weight > 0f ? weight : 1f;
+            var defWeight = IsBomb ? 0f : 1f;
+            
+            var weight = active?.Weight ?? defWeight;
+            
+            return weight > 0f ? weight : defWeight;
         }
 
         public string GetValueFormat(int value)
