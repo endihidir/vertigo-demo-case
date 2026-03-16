@@ -67,6 +67,9 @@ Scripts/
     ├── Core/                          # Reusable, game-agnostic systems
     │   ├── Attributes/
     │   │   └── ConstantDropdown.cs
+    │   ├── Modules/
+    │   │   └── Animation/
+    │   │       └── SizeAnimationModule.cs
     │   ├── Extensions/
     │   │   ├── ColorExtensions.cs
     │   │   ├── EnumerableExtensions.cs
@@ -224,6 +227,23 @@ Missing values (deleted constants) are flagged in the Inspector with a warning b
 
 `EditorLogger` wraps `Debug.Log/Warning/Error` behind `[Conditional("UNITY_EDITOR")]` so all logging strips out of release builds with zero runtime overhead.
 
+#### `SizeAnimationModule` (Core)
+
+A reusable DOTween-based animation component for scale and size transitions, living in the Core layer so any feature module can use it:
+
+```csharp
+// Pop-in with OutBack ease (used by all WoF panels)
+await sizeAnimationModule.SetScale(Vector3.one, duration: 0.25f, ease: Ease.OutBack);
+
+// Pop-out (instant, duration=0)
+await sizeAnimationModule.SetScale(Vector3.zero, duration: 0f);
+
+// RectTransform size delta
+sizeAnimationModule.SetRectSize(targetSize, duration, delay, ease);
+```
+
+`Transform` is serializable — if left empty, the component falls back to its own transform. Kills the active tween before starting a new one and cleans up in `OnDestroy`.
+
 ---
 
 ### Wheel of Fortune Module
@@ -235,11 +255,12 @@ The central orchestrator. Subscribes to all button events in the constructor and
 ```
 [Idle: PlayButton visible]
        ↓  PlayButton clicked
-[SpinView: idle rotation, SpinButton enabled]
+       →  UpdateWheelRewards() + ResetToSpinView() + WheelSpinView.SetActiveAsync(true)
+[SpinView: pop-in animation, idle rotation, SpinButton enabled]
        ↓  SpinButton clicked
 [Spinning: buttons locked, DOTween animation plays]
        ↓  Animation complete
-[SpinResultView: shows reward panel or bomb panel]
+[SpinResultView: pops in — shows reward panel or bomb panel]
        ↓  NextButton (reward) / TryAgainButton (bomb) / ContinueButton (collect)
 [Back to SpinView] or [ZoneReset]
 ```
@@ -434,7 +455,7 @@ One asset per wheel type (Bronze, Silver, Gold):
 
 | Package | Usage |
 |---------|-------|
-| **DOTween** | Spin animation (`WheelSpinAnimationModule`) |
+| **DOTween** | Spin animation (`WheelSpinAnimationModule`), panel pop transitions (`SizeAnimationModule`) |
 | **UniTask** | `async/await` for animation awaiting and view transitions |
 | **TextMeshPro** | All in-game text on slot and result views |
 | **NaughtyAttributes** | Inspector attributes (`[ReadOnly]`, `[ShowIf]`, `[Required]`, `[ValidateInput]`) |
