@@ -1,6 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
-using Game.Configs;
+using Game.Data;
 using Game.Modules;
 using NaughtyAttributes;
 using TMPro;

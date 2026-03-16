@@ -1,15 +1,12 @@
 using DG.Tweening;
+using Game.Configs;
 using UnityEngine;
 
 namespace Game.Modules
 {
     public class WheelSpinAnimationModule : MonoBehaviour
     {
-        [field: SerializeField] private bool UseUnscaledTime { get; set; } = true;
-        [field: SerializeField] private float SpinDuration { get; set; } = 2f;
-        [field: SerializeField] private float IdleSpeed { get; set; } = 30f;
-        [field: SerializeField] private int FullRotationCount { get; set; } = 5;
-        [field: SerializeField] private AnimationCurve SpinCurve { get; set; }
+        [field: SerializeField] private WheelSpinAnimationConfigSO Config { get; set; }
         
         private const float SlotAngle = 45f;
 
@@ -19,10 +16,10 @@ namespace Game.Modules
         {
             _spinTween?.Kill();
 
-            _spinTween = transform.DOLocalRotate(new Vector3(0f, 0f, -360f), 360f / IdleSpeed, RotateMode.LocalAxisAdd)
+            _spinTween = transform.DOLocalRotate(new Vector3(0f, 0f, -360f), 360f / Config.IdleSpeed, RotateMode.LocalAxisAdd)
                                   .SetEase(Ease.Linear)
                                   .SetLoops(-1, LoopType.Incremental)
-                                  .SetUpdate(UseUnscaledTime);
+                                  .SetUpdate(Config.UseUnscaledTime);
         }
 
         public Tween SpinTo(int slotIndex)
@@ -31,9 +28,9 @@ namespace Game.Modules
 
             var targetRotation = new Vector3(0f, 0f, CalculateEndAngle(slotIndex));
 
-            _spinTween = transform.DOLocalRotate(targetRotation, SpinDuration, RotateMode.FastBeyond360)
-                                  .SetEase(SpinCurve)
-                                  .SetUpdate(UseUnscaledTime);
+            _spinTween = transform.DOLocalRotate(targetRotation, Config.SpinDuration, RotateMode.FastBeyond360)
+                                  .SetEase(Config.SpinCurve)
+                                  .SetUpdate(Config.UseUnscaledTime);
 
             return _spinTween;
         }
@@ -47,7 +44,7 @@ namespace Game.Modules
             if (currentAngle > 180f) currentAngle -= 360f;
             var delta = targetAngle - currentAngle;
             while (delta > 0f) delta -= 360f;
-            delta -= FullRotationCount * 360f;
+            delta -= Config.FullRotationCount * 360f;
             return currentAngle + delta;
         }
 

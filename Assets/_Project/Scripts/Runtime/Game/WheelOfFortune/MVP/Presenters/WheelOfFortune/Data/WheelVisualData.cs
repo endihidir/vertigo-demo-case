@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Configs
+namespace Game.Data
 {
     [Serializable]
     public struct WheelVisualData

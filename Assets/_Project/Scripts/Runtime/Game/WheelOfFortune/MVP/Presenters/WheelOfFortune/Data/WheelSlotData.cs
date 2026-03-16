@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Core.Extensions;
-using Game.Data;
 using Game.Enums;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Game.Configs
+namespace Game.Data
 {
     [Serializable]
     public class WheelSlotData
@@ -17,13 +16,13 @@ namespace Game.Configs
         [field: SerializeField] public List<WeightThreshold> WeightThresholds { get; private set; }
         public bool IsBomb => WheelSlotType == WheelSlotType.Bomb;
 
-        public float GetWeight(int zoneCounter)
+        public float GetWeight(int zoneCount)
         {
             WeightThreshold active = null;
 
             foreach (var threshold in WeightThresholds)
             {
-                if (threshold.ZoneCount <= zoneCounter)
+                if (threshold.ZoneCount <= zoneCount)
                     active = threshold;
                 else
                     break;

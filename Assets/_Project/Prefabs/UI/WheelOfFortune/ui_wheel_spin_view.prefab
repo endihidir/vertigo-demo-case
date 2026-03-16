@@ -1071,52 +1071,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2978f4f6e1cc51b48850da6913bb64e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UseUnscaledTime>k__BackingField: 1
-  <SpinDuration>k__BackingField: 6
-  <IdleSpeed>k__BackingField: 30
-  <FullRotationCount>k__BackingField: 2
-  <SpinCurve>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.009036873
-      outSlope: 0.009036873
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.192604
-    - serializedVersion: 3
-      time: 0.3
-      value: 0.7
-      inSlope: 1.5955664
-      outSlope: 1.5955664
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07036467
-      outWeight: 0.072932705
-    - serializedVersion: 3
-      time: 0.6983821
-      value: 0.96827674
-      inSlope: 0.17529474
-      outSlope: 0.17529474
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.10529015
-      outWeight: 0.18518552
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.1
-      outSlope: 0.1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  <Config>k__BackingField: {fileID: 11400000, guid: c9f17f43b38af8e4eae7b9427337fc78,
+    type: 2}
 --- !u!1 &8344493445622768106
 GameObject:
   m_ObjectHideFlags: 0

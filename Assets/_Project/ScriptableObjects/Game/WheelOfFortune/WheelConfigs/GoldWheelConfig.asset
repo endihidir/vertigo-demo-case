@@ -21,7 +21,6 @@ MonoBehaviour:
     <SpinnerSprite>k__BackingField: {fileID: 21300000, guid: f381f0c1a3cd48345b9e2a6b4ec7010c,
       type: 3}
   <BombIcon>k__BackingField: {fileID: 0}
-  <BombLabel>k__BackingField: 
   <WheelSlotData>k__BackingField:
   - <SlotIndex>k__BackingField: 0
     <WheelSlotType>k__BackingField: 0
@@ -31,34 +30,42 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 200
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 10
   - <SlotIndex>k__BackingField: 1
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: cash_01
+      <Id>k__BackingField: gold_01
       <Name>k__BackingField: 
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 5
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 8
   - <SlotIndex>k__BackingField: 2
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: cash_01
+      <Id>k__BackingField: chest_gold_01
       <Name>k__BackingField: 
       <ValueType>k__BackingField: 1
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 10
   - <SlotIndex>k__BackingField: 3
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: cash_01
+      <Id>k__BackingField: chest_super_01
       <Name>k__BackingField: 
       <ValueType>k__BackingField: 1
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 10
   - <SlotIndex>k__BackingField: 4
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
@@ -67,31 +74,39 @@ MonoBehaviour:
       <ValueType>k__BackingField: 0
       <BaseValue>k__BackingField: 50
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 10
   - <SlotIndex>k__BackingField: 5
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: cash_01
+      <Id>k__BackingField: sniper_tier3
       <Name>k__BackingField: 
       <ValueType>k__BackingField: 2
       <BaseValue>k__BackingField: 10
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 8
   - <SlotIndex>k__BackingField: 6
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: cash_01
+      <Id>k__BackingField: smg_tier3
       <Name>k__BackingField: 
-      <ValueType>k__BackingField: 0
+      <ValueType>k__BackingField: 2
       <BaseValue>k__BackingField: 1
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 6
   - <SlotIndex>k__BackingField: 7
     <WheelSlotType>k__BackingField: 0
     <RewardDefinition>k__BackingField:
-      <Id>k__BackingField: cash_01
+      <Id>k__BackingField: shotgun_tier3
       <Name>k__BackingField: 
       <ValueType>k__BackingField: 2
       <BaseValue>k__BackingField: 100
       <Label>k__BackingField: 
-    <WeightThresholds>k__BackingField: []
+    <WeightThresholds>k__BackingField:
+    - <ZoneCount>k__BackingField: 1
+      <Weight>k__BackingField: 4

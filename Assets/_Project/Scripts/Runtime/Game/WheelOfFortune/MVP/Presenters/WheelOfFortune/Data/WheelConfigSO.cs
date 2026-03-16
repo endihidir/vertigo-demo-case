@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Game.Data;
 using Game.Enums;
 using NaughtyAttributes;
 using UnityEngine;
@@ -14,10 +15,7 @@ namespace Game.Configs
         [field: SerializeField] public WheelVisualData WheelVisuals { get; private set; }
         
         [field: SerializeField, ShowIf(nameof(IsSilver))] public Sprite BombIcon { get; private set; }
-        [field: SerializeField, ShowIf(nameof(IsSilver))] public string BombLabel { get; private set; }
-        
         [field: SerializeField] public List<WheelSlotData> WheelSlotData { get; private set; }
-        
         
         public bool IsSilver => WheelType == WheelType.Silver;
         

@@ -14,13 +14,13 @@ namespace Game.Handlers
             _configContainer = configContainer;
         }
 
-        public int ResolveSlotIndex(int zoneCounter)
+        public int ResolveSlotIndex(int zoneCount)
         {
-            var wheelType = WheelOfFortuneUtils.GetWheelType(zoneCounter);
+            var wheelType = WheelOfFortuneUtils.GetWheelType(zoneCount);
             
             var slots = _configContainer.GetWheelConfig(wheelType).WheelSlotData;
 
-            var totalWeight = slots.Sum(slot => slot.GetWeight(zoneCounter));
+            var totalWeight = slots.Sum(slot => slot.GetWeight(zoneCount));
 
             var roll = Random.Range(0f, totalWeight);
             
@@ -28,7 +28,7 @@ namespace Game.Handlers
 
             foreach (var slot in slots)
             {
-                cumulative += slot.GetWeight(zoneCounter);
+                cumulative += slot.GetWeight(zoneCount);
                 
                 if (roll <= cumulative)
                     return slot.SlotIndex;

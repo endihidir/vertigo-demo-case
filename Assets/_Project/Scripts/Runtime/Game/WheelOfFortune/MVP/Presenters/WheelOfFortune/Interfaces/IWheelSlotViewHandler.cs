@@ -1,4 +1,4 @@
-using Game.Configs;
+using Game.Data;
 using Game.Enums;
 using Game.Views;
 

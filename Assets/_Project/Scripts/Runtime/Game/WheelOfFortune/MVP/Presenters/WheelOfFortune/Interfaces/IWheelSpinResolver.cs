@@ -2,6 +2,6 @@ namespace Game.Handlers
 {
     public interface IWheelSpinResolver
     {
-        int ResolveSlotIndex(int zoneCounter);
+        int ResolveSlotIndex(int zoneCount);
     }
 }

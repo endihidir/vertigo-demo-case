@@ -20,12 +20,11 @@ namespace Core.Extensions
 
         public static string ConvertToRanking(this int rank)
         {
-            string ranking;
+            var lastTwoDigits = rank % 100;
 
-            if (rank is > 3 and < 21)
-                ranking = "th";
-            else
-                ranking = (rank % 10) switch
+            var suffix = lastTwoDigits is > 10 and < 21
+                ? "th"
+                : (rank % 10) switch
                 {
                     1 => "st",
                     2 => "nd",
@@ -33,7 +32,7 @@ namespace Core.Extensions
                     _ => "th"
                 };
 
-            return rank + ranking;
+            return rank + suffix;
         }
         
         public static string HideBigNumber(this int num) => num switch
