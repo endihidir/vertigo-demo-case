@@ -1,6 +1,5 @@
 using System;
 using Cysharp.Threading.Tasks;
-using Game.Configs;
 using Game.Data;
 using Game.Enums;
 using Game.Handlers;

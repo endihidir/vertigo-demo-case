@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Data
 {
-    [CreateAssetMenu(fileName = "RewardVisualConfigContainer", menuName = "Game/Configs/RewardVisualConfigContainer")]
+    [CreateAssetMenu(fileName = "RewardVisualConfigContainer", menuName = "Game/Containers/RewardVisualConfigContainer")]
     public class RewardVisualConfigContainerSO : ScriptableObject
     {
         [field: SerializeField] public List<RewardTier> RewardVisuals { get; private set; }
