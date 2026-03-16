@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -35,13 +36,13 @@ namespace Core.Extensions
             return rank + suffix;
         }
         
-        public static string HideBigNumber(this int num) => num switch
+        public static string HideBigNumber(this int num, CultureInfo cultureInfo = null) => num switch
         {
-            >= 100000000 => (num / 1000000D).ToString("0.#M"),
-            >= 1000000 => (num / 1000000D).ToString("0.##M"),
-            >= 100000 => (num / 1000D).ToString("0.#k"),
-            >= 10000 => (num / 1000D).ToString("0.##k"),
-            >= 1000 => (num / 1000D).ToString("0.#k"),
+            >= 100000000 => (num / 1000000D).ToString("0.#M", cultureInfo),
+            >= 1000000 => (num / 1000000D).ToString("0.##M", cultureInfo),
+            >= 100000 => (num / 1000D).ToString("0.#k", cultureInfo),
+            >= 10000 => (num / 1000D).ToString("0.##k", cultureInfo),
+            >= 1000 => (num / 1000D).ToString("0.#k", cultureInfo),
             _ => num.ToString("0")
         };
 

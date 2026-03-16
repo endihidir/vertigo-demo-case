@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Core.Extensions;
 using Game.Enums;
 using NaughtyAttributes;
@@ -37,8 +38,8 @@ namespace Game.Data
         {
             return RewardDefinition.ValueType switch
             {
-                RewardValueType.Numeric   => value.HideBigNumber(),
-                RewardValueType.Stackable => $"X{value.HideBigNumber()}",
+                RewardValueType.Numeric   => value.HideBigNumber(CultureInfo.InvariantCulture),
+                RewardValueType.Stackable => $"X{value.HideBigNumber(CultureInfo.InvariantCulture)}",
                 _                         => string.Empty
             };
         }
