@@ -1,5 +1,7 @@
 using System;
+using Core.Modules;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,12 +16,15 @@ namespace Game.Views
     {
         [field: SerializeField, ReadOnly] public Button CollectButton { get; private set; }
         [field: SerializeField, ReadOnly] public Button ContinueButton { get; private set; }
+        [field: SerializeField, ReadOnly] public SizeAnimationModule SizeAnimationModule { get; private set; }
         [field: SerializeField] private Transform RewardContentTransform { get; set; }
         
         
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            SizeAnimationModule = GetComponentInChildren<SizeAnimationModule>();
+            
             var allButtons = GetComponentsInChildren<Button>(true);
             
             foreach (var button in allButtons)
@@ -35,7 +40,7 @@ namespace Game.Views
         public async UniTask SetActiveAsync(bool value)
         {
             gameObject.SetActive(value);
-            await UniTask.Yield();
+            await SizeAnimationModule.SetScale(value ? Vector3.one : Vector3.zero, value ? .25f : 0f, ease: Ease.OutBack);
         }
         
         public void PlaceSlot(WheelCollectedRewardSlotView slotView) => slotView.SetParent(RewardContentTransform);

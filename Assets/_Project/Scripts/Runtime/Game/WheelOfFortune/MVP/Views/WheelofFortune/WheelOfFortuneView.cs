@@ -16,7 +16,6 @@ namespace Game.Views
         [field: SerializeField, ReadOnly] public WheelSpinView WheelSpinView { get; private set; }
         [field: SerializeField, ReadOnly] public WheelSpinResultView WheelSpinResultView { get; private set; }
         [field: SerializeField, ReadOnly] public WheelRewardCollectView WheelRewardCollectView { get; private set; }
-        public event Action OnInitialize;
 
 #if UNITY_EDITOR
         private void OnValidate()
@@ -34,8 +33,6 @@ namespace Game.Views
             EditorUtility.SetDirty(this);
         }
 #endif
-
-        public void Initialize() => WheelSpinView.SetActiveAsync(true).ContinueWith(RaiseInitialized).Forget();
-        private void RaiseInitialized() => OnInitialize?.Invoke();
+        
     }
 }

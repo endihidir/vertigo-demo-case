@@ -38,7 +38,6 @@ namespace Game.Presenters
 
         private void Subscribe()
         {
-            _view.OnInitialize += OnViewInitialized;
             _zoneModel.OnZoneUpdate += OnZoneUpdated;
 
             _view.PlayButton.onClick.AddListener(OnClickPlayButton);
@@ -56,13 +55,9 @@ namespace Game.Presenters
         private void OnClickPlayButton()
         {
             _view.PlayButton.gameObject.SetActive(false);
-            _view.Initialize();
-        }
-
-        private void OnViewInitialized()
-        {
-            ResetToSpinView();
             UpdateWheelRewards();
+            ResetToSpinView();
+            _view.WheelSpinView.SetActiveAsync(true).Forget();
         }
 
         private void OnZoneUpdated() => UpdateWheelRewards();
@@ -171,7 +166,6 @@ namespace Game.Presenters
 
         private void Unsubscribe()
         {
-            _view.OnInitialize -= OnViewInitialized;
             _zoneModel.OnZoneUpdate -= OnZoneUpdated;
 
             _view.PlayButton.onClick.RemoveListener(OnClickPlayButton);

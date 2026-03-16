@@ -1,5 +1,7 @@
 using System;
+using Core.Modules;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Game.Data;
 using Game.Modules;
 using NaughtyAttributes;
@@ -19,6 +21,7 @@ namespace Game.Views
         [field: SerializeField, ReadOnly] public Button SpinButton { get; private set; }
         [field: SerializeField, ReadOnly] public WheelSpinAnimationModule SpinAnimationModule { get; private set; }
         [field: SerializeField, ReadOnly] public WheelRewardHolderView[] RewardHolders { get; private set; }
+        [field: SerializeField, ReadOnly] public SizeAnimationModule SizeAnimationModule { get; private set; }
         
         [field: SerializeField] private TextMeshProUGUI WheelZoneTitleText { get; set; }
         [field: SerializeField] private Image WheelSpinnerImage { get; set; }
@@ -28,8 +31,8 @@ namespace Game.Views
         private void OnValidate()
         {
             RewardHolders = GetComponentsInChildren<WheelRewardHolderView>();
-            
             SpinAnimationModule = GetComponentInChildren<WheelSpinAnimationModule>();
+            SizeAnimationModule = GetComponentInChildren<SizeAnimationModule>();
             
             var allButtons = GetComponentsInChildren<Button>();
             
@@ -46,7 +49,7 @@ namespace Game.Views
         public async UniTask SetActiveAsync(bool value)
         {
             gameObject.SetActive(value);
-            await UniTask.Yield();
+            await SizeAnimationModule.SetScale(value ? Vector3.one : Vector3.zero, value ? .25f : 0f, ease: Ease.OutBack);
         }
 
         public void UpdateWheelVisuals(WheelVisualData wheelVisualData)

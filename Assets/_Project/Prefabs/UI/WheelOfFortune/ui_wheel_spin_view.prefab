@@ -165,8 +165,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8344493444983884220}
-  - {fileID: 8344493444465968643}
-  - {fileID: 8344493444541520171}
+  - {fileID: 1459264740993713873}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -199,9 +198,62 @@ MonoBehaviour:
   - {fileID: 8344493445253252785}
   - {fileID: 8344493444337163926}
   - {fileID: 8344493444769702220}
+  <SizeAnimationModule>k__BackingField: {fileID: 220161037103944144}
   <WheelZoneTitleText>k__BackingField: {fileID: 3398915714442603544}
   <WheelSpinnerImage>k__BackingField: {fileID: 8344493443968420935}
   <WheelIndicatorImage>k__BackingField: {fileID: 8344493445622768020}
+--- !u!1 &3851919358976028392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1459264740993713873}
+  - component: {fileID: 220161037103944144}
+  m_Layer: 5
+  m_Name: ui_wheel_spin_panel_animator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1459264740993713873
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851919358976028392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 8344493444465968643}
+  - {fileID: 8344493444541520171}
+  m_Father: {fileID: 6844286626057937014}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &220161037103944144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851919358976028392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48562d4c16719e42955528a1072c14d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Transform>k__BackingField: {fileID: 1459264740993713873}
 --- !u!1 &7954868679698959540
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,8 +593,8 @@ RectTransform:
   - {fileID: 8344493445509773413}
   - {fileID: 8344493444692915715}
   - {fileID: 3351481928055337211}
-  m_Father: {fileID: 6844286626057937014}
-  m_RootOrder: 1
+  m_Father: {fileID: 1459264740993713873}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -618,8 +670,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6844286626057937014}
-  m_RootOrder: 2
+  m_Father: {fileID: 1459264740993713873}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}

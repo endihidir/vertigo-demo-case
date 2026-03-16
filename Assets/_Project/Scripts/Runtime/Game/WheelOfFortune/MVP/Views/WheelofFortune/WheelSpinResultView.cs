@@ -1,5 +1,7 @@
 using System;
+using Core.Modules;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -15,9 +17,9 @@ namespace Game.Views
     {
         [field: SerializeField, ReadOnly] public Button TryAgainButton { get; private set; }
         [field: SerializeField, ReadOnly] public Button NextButton { get; private set; }
+        [field: SerializeField, ReadOnly] public SizeAnimationModule SizeAnimationModule { get; private set; }
         
         [field: SerializeField] private GameObject BombPanel { get; set; }
-        
         [field: SerializeField] private GameObject RewardPanel { get; set; }
         [field: SerializeField] private Image RewardImage { get; set; }
         [field: SerializeField] private TextMeshProUGUI RewardAmountValueTxt { get; set; }
@@ -25,6 +27,8 @@ namespace Game.Views
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            SizeAnimationModule = GetComponentInChildren<SizeAnimationModule>();
+            
             var allButtons = GetComponentsInChildren<Button>(true);
             
             foreach (var button in allButtons)
@@ -40,7 +44,7 @@ namespace Game.Views
         public async UniTask SetActiveAsync(bool value)
         {
             gameObject.SetActive(value);
-            await UniTask.Yield();
+            await SizeAnimationModule.SetScale(value ? Vector3.one : Vector3.zero, value ? .25f : 0f, ease: Ease.OutBack);
         }
 
         public void InitBombPanel()
