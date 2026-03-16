@@ -455,5 +455,3 @@ Assembly layout:
 5. Add a child `WheelOfFortuneBootstrapper` in the hierarchy (auto-detected via `OnValidate`)
 6. Assign your `WheelOfFortuneView` prefab to the bootstrapper
 7. Press Play — the bootstrapper wires all dependencies at `Awake`
-
-> **Editor only:** Use **Edit → Clear All** to wipe saved reward data and PlayerPrefs during testing.
