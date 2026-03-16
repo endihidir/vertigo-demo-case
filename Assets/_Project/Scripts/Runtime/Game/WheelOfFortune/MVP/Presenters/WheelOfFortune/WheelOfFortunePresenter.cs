@@ -11,82 +11,102 @@ namespace Game.Presenters
 {
     public sealed class WheelOfFortunePresenter : IDisposable
     {
-        private readonly IWheelZoneModel _wheelZoneModel;
-        private readonly IWheelOfFortuneView _wheelOfFortuneView;
+        private readonly IWheelZoneModel _zoneModel;
+        private readonly IWheelOfFortuneView _view;
         private readonly IWheelSlotViewHandler _wheelSlotViewHandler;
         private readonly IWheelRewardProvider _wheelRewardProvider;
         private readonly IWheelRewardDatabase _wheelRewardDatabase;
-        private readonly IWheelSpinResolver _wheelSpinResolver;
+        private readonly IWheelSpinResolver _spinResolver;
         private readonly IWheelCollectedRewardSlotHandler _collectedRewardSlotHandler;
         
         private int _lastTargetSlotIndex;
         
-        public WheelOfFortunePresenter(IWheelZoneModel wheelZoneModel, IWheelOfFortuneView wheelOfFortuneView, IWheelSlotViewHandler wheelSlotViewHandler, 
-            IWheelRewardProvider rewardProvider, IWheelRewardDatabase rewardDatabase, IWheelSpinResolver wheelSpinResolver, IWheelCollectedRewardSlotHandler collectedRewardSlotHandler)
+        public WheelOfFortunePresenter(IWheelZoneModel zoneModel, IWheelOfFortuneView view, IWheelSlotViewHandler wheelSlotViewHandler, 
+            IWheelRewardProvider rewardProvider, IWheelRewardDatabase rewardDatabase, IWheelSpinResolver spinResolver, IWheelCollectedRewardSlotHandler collectedRewardSlotHandler)
         {
-            _wheelZoneModel = wheelZoneModel;
-            _wheelOfFortuneView = wheelOfFortuneView;
+            _zoneModel = zoneModel;
+            _view = view;
             _wheelSlotViewHandler = wheelSlotViewHandler;
             _wheelRewardProvider = rewardProvider;
             _wheelRewardDatabase = rewardDatabase;
-            _wheelSpinResolver = wheelSpinResolver;
+            _spinResolver = spinResolver;
             _collectedRewardSlotHandler = collectedRewardSlotHandler;
             
-            _wheelOfFortuneView.OnInitialize += OnViewInitialized;
-            _wheelZoneModel.OnZoneUpdate += OnZoneUpdated;
+            _view.PlayButton.onClick.AddListener(OnClickPlayButton);
+            _view.OnInitialize += OnViewInitialized;
+            _zoneModel.OnZoneUpdate += OnZoneUpdated;
             
-            _wheelOfFortuneView.WheelSpinView.SpinButton.onClick.AddListener(OnClickSpinButton);
-            _wheelOfFortuneView.WheelSpinResultView.NextButton.onClick.AddListener(OnClickNextButton);
-            _wheelOfFortuneView.WheelSpinResultView.TryAgainButton.onClick.AddListener(OnClickTryAgainButton);
-            _wheelOfFortuneView.WheelRewardCollectView.CollectButton.onClick.AddListener(OnClickCollectButton);
-            _wheelOfFortuneView.WheelRewardCollectView.ContinueButton.onClick.AddListener(OnClickContinueButton);
+            _view.WheelSpinView.ExitButton.onClick.AddListener(OnClickExitButton);
+            _view.WheelSpinView.SpinButton.onClick.AddListener(OnClickSpinButton);
+            
+            _view.WheelSpinResultView.NextButton.onClick.AddListener(OnClickNextButton);
+            _view.WheelSpinResultView.TryAgainButton.onClick.AddListener(OnClickTryAgainButton);
+            
+            _view.WheelRewardCollectView.CollectButton.onClick.AddListener(OnClickCollectButton);
+            _view.WheelRewardCollectView.ContinueButton.onClick.AddListener(OnClickContinueButton);
         }
-        
+
+        private void OnClickExitButton()
+        {
+            _view.WheelSpinView.SpinAnimationModule.KillAnimation();
+            _view.WheelSpinView.SetActiveAsync(false).Forget();
+            _view.WheelRewardCollectView.SetActiveAsync(false).Forget();
+            _view.WheelSpinResultView.SetActiveAsync(false).Forget();
+            _view.PlayButton.gameObject.SetActive(true);
+        }
+
+        private void OnClickPlayButton()
+        {
+            _view.PlayButton.gameObject.SetActive(false);
+            _view.Initialize();
+        }
+
         private void OnViewInitialized()
         {
-            ResetWheelOfFortuneView();
+            ResetToSpinView();
             UpdateWheelRewards();
         }
         
         private void OnZoneUpdated() => UpdateWheelRewards();
-
         private void OnClickSpinButton() => PlaySpinAnimation().Forget();
 
         private async UniTask PlaySpinAnimation()
         {
-            _lastTargetSlotIndex = _wheelSpinResolver.ResolveSlotIndex(_wheelZoneModel.ZoneCounter);
-            _wheelOfFortuneView.WheelSpinView.SetSpinButtonInteractable(false);
-            await _wheelOfFortuneView.WheelSpinView.SpinAnimationModule.SpinTo(_lastTargetSlotIndex);
-            _wheelRewardProvider.PrepareSpinResultView(_lastTargetSlotIndex, _wheelZoneModel.ZoneCounter, _wheelOfFortuneView.WheelSpinResultView);
+            _lastTargetSlotIndex = _spinResolver.ResolveSlotIndex(_zoneModel.ZoneCounter);
+            _view.WheelSpinView.SetSpinButtonInteractable(false);
+            _view.WheelSpinView.SetExitButtonInteractable(false);
+            await _view.WheelSpinView.SpinAnimationModule.SpinTo(_lastTargetSlotIndex);
+            _view.WheelSpinView.SetExitButtonInteractable(true);
+            _wheelRewardProvider.PrepareSpinResultView(_lastTargetSlotIndex, _zoneModel.ZoneCounter, _view.WheelSpinResultView);
         }
         
         private void OnClickNextButton()
         {
-            var itemId = _wheelRewardProvider.GetSlotData(_lastTargetSlotIndex, _wheelZoneModel.ZoneCounter).RewardDefinition.Id;
-            var calculatedValue = _wheelRewardProvider.CalculateValue(_lastTargetSlotIndex, _wheelZoneModel.ZoneCounter);
+            var itemId = _wheelRewardProvider.GetRewardSlotData(_lastTargetSlotIndex, _zoneModel.ZoneCounter).RewardDefinition.Id;
+            var calculatedValue = _wheelRewardProvider.CalculateValue(_lastTargetSlotIndex, _zoneModel.ZoneCounter);
             _wheelRewardDatabase.AddAmount(itemId, calculatedValue);
-            ResetWheelOfFortuneView();
-            _wheelZoneModel.MoveNextZone();
+            ResetToSpinView();
+            _zoneModel.MoveNextZone();
         }
 
-        private void OnClickContinueButton() => ResetWheelOfFortuneView();
+        private void OnClickContinueButton() => ResetToSpinView();
 
         private void OnClickTryAgainButton()
         {
-            _wheelZoneModel.ResetZone();
+            _zoneModel.ResetZone();
             _wheelRewardDatabase.Reset();
-            ResetWheelOfFortuneView();
+            ResetToSpinView();
         }
         
         private void OnClickCollectButton()
         {
-            _wheelZoneModel.ResetZone();
-            ResetWheelOfFortuneView();
+            _zoneModel.ResetZone();
+            ResetToSpinView();
         }
 
         private void UpdateWheelRewards()
         {
-            var wheelType = WheelOfFortuneUtils.GetWheelType(_wheelZoneModel.ZoneCounter);
+            var wheelType = WheelOfFortuneUtils.GetWheelType(_zoneModel.ZoneCounter);
 
             if (wheelType is WheelType.Bronze or WheelType.Gold)
             {
@@ -94,29 +114,33 @@ namespace Game.Presenters
                 
                 foreach (var slotView in slotViews)
                 {
-                    _wheelOfFortuneView.WheelRewardCollectView.SettleReward(slotView);
+                    _view.WheelRewardCollectView.SettleReward(slotView);
                 }
                 
-                _wheelOfFortuneView.WheelRewardCollectView.SetActive(true).Forget();
+                _view.WheelRewardCollectView.SetActiveAsync(true).Forget();
             }
             
             var wheelVisuals = _wheelSlotViewHandler.GetWheelVisuals(wheelType);
             
-            _wheelOfFortuneView.WheelSpinView.UpdateWheelVisuals(wheelVisuals);
+            _view.WheelSpinView.UpdateWheelVisuals(wheelVisuals);
             _wheelSlotViewHandler.PopulateSlotViews(wheelType, out var views);
 
             foreach (var wheelSlotView in views)
             {
-                var calculatedValue = _wheelRewardProvider.CalculateValue(wheelSlotView.SlotIndex, _wheelZoneModel.ZoneCounter);
-                var formatValue = _wheelRewardProvider.FormatValue(wheelSlotView.SlotIndex, calculatedValue, _wheelZoneModel.ZoneCounter);
+                var calculatedValue = _wheelRewardProvider.CalculateValue(wheelSlotView.SlotIndex, _zoneModel.ZoneCounter);
+                var formatValue = _wheelRewardProvider.FormatValue(wheelSlotView.SlotIndex, calculatedValue, _zoneModel.ZoneCounter);
                 wheelSlotView.SetValue(formatValue);
                 SettleRewardView(wheelSlotView);
             }
+
+            var titleTxt = WheelOfFortuneUtils.GetTitle(wheelType);
+            var title = string.IsNullOrEmpty(titleTxt) ? $"ZONE {_zoneModel.ZoneCounter}" : titleTxt;
+            _view.WheelSpinView.SetZoneTitle(title, wheelVisuals.TitleColor);
         }
 
         private void SettleRewardView(WheelSlotView slotView)
         {
-            foreach (var rewardHolder in _wheelOfFortuneView.WheelSpinView.RewardHolders)
+            foreach (var rewardHolder in _view.WheelSpinView.RewardHolders)
             {
                 if(rewardHolder.SlotIndex != slotView.SlotIndex) continue;
                 
@@ -124,23 +148,29 @@ namespace Game.Presenters
             }
         }
         
-        private void ResetWheelOfFortuneView()
+        private void ResetToSpinView()
         {
-            _wheelOfFortuneView.WheelRewardCollectView.SetActive(false).Forget();
-            _wheelOfFortuneView.WheelSpinResultView.SetActive(false).Forget();
-            _wheelOfFortuneView.WheelSpinView.SpinAnimationModule.PlayIdle();
-            _wheelOfFortuneView.WheelSpinView.SetSpinButtonInteractable(true);
+            _view.WheelRewardCollectView.SetActiveAsync(false).Forget();
+            _view.WheelSpinResultView.SetActiveAsync(false).Forget();
+            _view.WheelSpinView.SpinAnimationModule.PlayIdle();
+            _view.WheelSpinView.SetSpinButtonInteractable(true);
         }
         
         public void Dispose()
         {
-            _wheelOfFortuneView.OnInitialize -= OnViewInitialized;
-            _wheelZoneModel.OnZoneUpdate -= OnZoneUpdated;
-            _wheelOfFortuneView.WheelSpinView.SpinButton.onClick.RemoveListener(OnClickSpinButton);
-            _wheelOfFortuneView.WheelSpinResultView.NextButton.onClick.RemoveListener(OnClickNextButton);
-            _wheelOfFortuneView.WheelSpinResultView.TryAgainButton.onClick.RemoveListener(OnClickTryAgainButton);
-            _wheelOfFortuneView.WheelRewardCollectView.CollectButton.onClick.RemoveListener(OnClickCollectButton);
-            _wheelOfFortuneView.WheelRewardCollectView.ContinueButton.onClick.RemoveListener(OnClickContinueButton);
+            _view.PlayButton.onClick.RemoveListener(OnClickPlayButton);
+            
+            _view.OnInitialize -= OnViewInitialized;
+            _zoneModel.OnZoneUpdate -= OnZoneUpdated;
+            
+            _view.WheelSpinView.ExitButton.onClick.RemoveListener(OnClickExitButton);
+            _view.WheelSpinView.SpinButton.onClick.RemoveListener(OnClickSpinButton);
+            
+            _view.WheelSpinResultView.NextButton.onClick.RemoveListener(OnClickNextButton);
+            _view.WheelSpinResultView.TryAgainButton.onClick.RemoveListener(OnClickTryAgainButton);
+            
+            _view.WheelRewardCollectView.CollectButton.onClick.RemoveListener(OnClickCollectButton);
+            _view.WheelRewardCollectView.ContinueButton.onClick.RemoveListener(OnClickContinueButton);
         }
     }
 }

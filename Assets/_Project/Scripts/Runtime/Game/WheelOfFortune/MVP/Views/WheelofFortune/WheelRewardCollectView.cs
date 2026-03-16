@@ -32,7 +32,7 @@ namespace Game.Views
         }
 #endif
 
-        public async UniTask SetActive(bool value)
+        public async UniTask SetActiveAsync(bool value)
         {
             gameObject.SetActive(value);
             await UniTask.Yield();

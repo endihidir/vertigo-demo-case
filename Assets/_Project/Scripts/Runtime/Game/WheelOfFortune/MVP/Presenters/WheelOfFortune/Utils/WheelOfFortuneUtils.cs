@@ -10,5 +10,12 @@ namespace Game.Utils
             if (zoneCounter % 5 == 0) return WheelType.Bronze;
             return WheelType.Silver;
         }
+        
+        public static string GetTitle(WheelType wheelType) => wheelType switch
+        {
+            WheelType.Bronze => "BRONZE SPIN",
+            WheelType.Gold => "GOLDEN SPIN",
+            _ => string.Empty
+        };
     }
 }

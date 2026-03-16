@@ -18,8 +18,10 @@ namespace Game.Handlers
             _configContainer = configContainer;
             _rewardVisualContainer = rewardVisualContainer;
         }
+        
+        public 
 
-        public WheelSlotData GetSlotData(int slotIndex, int zoneCounter)
+        public WheelSlotData GetRewardSlotData(int slotIndex, int zoneCounter)
         {
             var wheelType = WheelOfFortuneUtils.GetWheelType(zoneCounter);
             
@@ -28,7 +30,7 @@ namespace Game.Handlers
 
         public void PrepareSpinResultView(int slotIndex, int zoneCounter, WheelSpinResultView spinResultView)
         {
-            var wheelSlotData = GetSlotData(slotIndex, zoneCounter);
+            var wheelSlotData = GetRewardSlotData(slotIndex, zoneCounter);
             
             if (wheelSlotData.IsBomb)
             {
@@ -42,7 +44,7 @@ namespace Game.Handlers
                 spinResultView.InitRewardPanel(visualData.Icon, rewardTxt);
             }
 
-            spinResultView.SetActive(true).Forget();
+            spinResultView.SetActiveAsync(true).Forget();
         }
 
         public int CalculateValue(int slotIndex, int zoneCounter)

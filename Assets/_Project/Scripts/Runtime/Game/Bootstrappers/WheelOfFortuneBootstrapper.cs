@@ -26,7 +26,6 @@ namespace Game.Installers
             IWheelCollectedRewardSlotHandler collectedRewardSlotHandler = new WheelCollectedRewardSlotHandler(slotViewFactory, rewardVisualContainer, wheelConfigContainer, rewardDatabase);
             
             _wheelOfFortunePresenter = new WheelOfFortunePresenter(wheelZoneModel, WheelOfFortuneView, wheelSlotViewHandler, rewardProvider, rewardDatabase, wheelSpinResolver, collectedRewardSlotHandler);
-            WheelOfFortuneView.Initialize();
         }
         
         private void OnDestroy()

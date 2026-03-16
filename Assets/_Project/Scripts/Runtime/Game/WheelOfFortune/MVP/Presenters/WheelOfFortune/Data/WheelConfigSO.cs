@@ -18,6 +18,7 @@ namespace Game.Configs
         
         [field: SerializeField] public List<WheelSlotData> WheelSlotData { get; private set; }
         
+        
         public bool IsSilver => WheelType == WheelType.Silver;
         
         public WheelSlotData GetWheelSlotData(int slotIndex)

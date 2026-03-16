@@ -84,6 +84,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e556a939e3d538d46895be25c784b093, type: 3}
   - {fileID: 21300000, guid: 271202492ab61eb4abf01e17b5ddd31f, type: 3}
   - {fileID: 21300000, guid: c1bb694953208e749ae10e747302307c, type: 3}
+  - {fileID: 21300000, guid: 1e19a26996f522a44ad6aa8b551f9886, type: 3}
   - {fileID: 21300000, guid: 928287b999c01fe42829a76dbfb3f771, type: 3}
   - {fileID: 21300000, guid: 765857e92ebdc4f45acf0eeb2ff85862, type: 3}
   - {fileID: 21300000, guid: e398e83a36050224eb8cc460a8c7984c, type: 3}
@@ -143,6 +144,7 @@ SpriteAtlas:
   - ui_icon_aviator_glasses_easter
   - UI_button_grey_standard
   - ui_card_panel_zone_current_white
+  - ui_button_exit
   - UI_icon_chest_Bronze_nolight
   - ui_spin_generic_button
   - UI_Icon_Renders_tier2_rifle

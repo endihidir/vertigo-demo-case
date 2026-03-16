@@ -37,6 +37,8 @@ namespace Game.Modules
 
             return _spinTween;
         }
+        
+        public void KillAnimation() => _spinTween?.Kill();
 
         private float CalculateEndAngle(int slotIndex)
         {
@@ -49,6 +51,6 @@ namespace Game.Modules
             return currentAngle + delta;
         }
 
-        private void OnDestroy() => _spinTween?.Kill();
+        private void OnDestroy() => KillAnimation();
     }
 }
