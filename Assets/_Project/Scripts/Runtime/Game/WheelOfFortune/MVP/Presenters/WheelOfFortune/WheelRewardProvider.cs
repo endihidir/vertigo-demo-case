@@ -18,8 +18,6 @@ namespace Game.Handlers
             _configContainer = configContainer;
             _rewardVisualContainer = rewardVisualContainer;
         }
-        
-        public 
 
         public WheelSlotData GetRewardSlotData(int slotIndex, int zoneCounter)
         {
