@@ -69,7 +69,6 @@ namespace Game.Presenters
             _view.WheelSpinView.SetSpinButtonInteractable(false);
             _view.WheelSpinView.SetExitButtonInteractable(false);
             await _view.WheelSpinView.SpinAnimationModule.SpinTo(_lastTargetSlotIndex);
-            _view.WheelSpinView.SetExitButtonInteractable(true);
             ShowSpinResult(_wheelRewardProvider.GetSpinResultData(_lastTargetSlotIndex, _zoneModel.ZoneCounter));
         }
 
@@ -159,6 +158,7 @@ namespace Game.Presenters
             _view.WheelRewardCollectView.SetActiveAsync(false).Forget();
             _view.WheelSpinResultView.SetActiveAsync(false).Forget();
             _view.WheelSpinView.SpinAnimationModule.PlayIdle();
+            _view.WheelSpinView.SetExitButtonInteractable(true);
             _view.WheelSpinView.SetSpinButtonInteractable(true);
         }
 
