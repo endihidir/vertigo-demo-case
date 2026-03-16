@@ -66,7 +66,7 @@ MonoBehaviour:
       <Label>k__BackingField: 
     <WeightThresholds>k__BackingField:
     - <ZoneCount>k__BackingField: 1
-      <Weight>k__BackingField: 0
+      <Weight>k__BackingField: 0.5
     - <ZoneCount>k__BackingField: 15
       <Weight>k__BackingField: 1
     - <ZoneCount>k__BackingField: 30
