@@ -265,7 +265,7 @@ The central orchestrator. Subscribes to all button events in the constructor and
 [Back to SpinView] or [ZoneReset]
 ```
 
-Bronze and Gold zone transitions additionally show the **WheelRewardCollectView** before returning to spin.
+Silver and Gold zone transitions additionally show the **WheelRewardCollectView** before returning to spin.
 
 #### `WheelZoneModel`
 
@@ -360,16 +360,16 @@ Zone-to-wheel-type mapping in `WheelOfFortuneUtils`:
 
 ```csharp
 if (zoneCount % 30 == 0) → WheelType.Gold    // Every 30th zone
-if (zoneCount % 5  == 0) → WheelType.Bronze  // Every 5th zone (except Gold)
-else                     → WheelType.Silver  // All other zones
+if (zoneCount % 5  == 0) → WheelType.Silver  // Every 5th zone (except Gold)
+else                     → WheelType.Bronze  // All other zones
 ```
 
 Zone title display:
-- **Silver** → `"ZONE {N}"`
-- **Bronze** → `"BRONZE SPIN"`
+- **Bronze** → `"ZONE {N}"`
+- **Silver** → `"SILVER SPIN"`
 - **Gold** → `"GOLDEN SPIN"`
 
-Only the **Silver wheel** contains bomb slots. Hitting a bomb triggers `TryAgainButton`, resets the zone counter to 1, and clears the reward database.
+Only the **Bronze wheel** contains bomb slots. Hitting a bomb triggers `TryAgainButton`, resets the zone counter to 1, and clears the reward database.
 
 ---
 
@@ -437,9 +437,9 @@ One asset per wheel type (Bronze, Silver, Gold):
 | Field | Notes |
 |-------|-------|
 | `WheelType` | Enum identifier |
-| `ValueMultiplier` | Multiplies all `BaseValue` calculations (Bronze = 1.25) |
+| `ValueMultiplier` | Multiplies all `BaseValue` calculations (Silver = 1.25) |
 | `WheelVisuals` | Title color, indicator sprite, spinner sprite |
-| `BombIcon` | Shown only on Silver wheel bomb slots |
+| `BombIcon` | Shown only on Bronze wheel bomb slots |
 | `WheelSlotData` | List of 8 `WheelSlotData` entries |
 
 ### Adding a New Reward
