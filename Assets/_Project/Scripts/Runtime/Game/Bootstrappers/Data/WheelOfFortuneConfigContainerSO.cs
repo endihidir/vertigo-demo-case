@@ -1,6 +1,7 @@
 using System.Linq;
 using Game.Data;
 using Game.Enums;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Game.Configs
@@ -8,6 +9,8 @@ namespace Game.Configs
     [CreateAssetMenu(fileName = "WheelOfFortuneConfigContainer", menuName = "Game/Containers/WheelOfFortuneConfigContainer")]
     public class WheelOfFortuneConfigContainerSO : ScriptableObject
     {
+        [field: SerializeField] public bool OverrideZoneCount { get; private set; }
+        [field: SerializeField, ShowIf(nameof(OverrideZoneCount))] public int CustomZoneCount { get; private set; }
         [field: SerializeField] public WheelConfigSO[] WheelConfigs { get; private set; }
         
         public WheelConfigSO GetWheelConfig(WheelType wheelType)

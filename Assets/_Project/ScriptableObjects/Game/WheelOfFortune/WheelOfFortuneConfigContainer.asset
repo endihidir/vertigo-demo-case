@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55df5c464c33486385656fbb1e6af67f, type: 3}
   m_Name: WheelOfFortuneConfigContainer
   m_EditorClassIdentifier: 
+  <OverrideZoneCount>k__BackingField: 0
+  <CustomZoneCount>k__BackingField: 0
   <WheelConfigs>k__BackingField:
   - {fileID: 11400000, guid: 71118547b05b15646a311396bfcc8e78, type: 2}
   - {fileID: 11400000, guid: 7430a0a847a28d948a8ea50d48387358, type: 2}

@@ -20,7 +20,7 @@ namespace Game.Installers
         {
             IJsonSaveService jsonSaveService = new JsonSaveService();
             IWheelRewardDatabase rewardDatabase = new WheelRewardDatabase(jsonSaveService);
-            IWheelZoneModel wheelZoneModel = new WheelZoneModel();
+            IWheelZoneModel wheelZoneModel = new WheelZoneModel(wheelConfigContainer);
             
             IWheelRewardProvider rewardProvider = new WheelRewardProvider(wheelConfigContainer, rewardVisualContainer);
             IWheelSpinResolver wheelSpinResolver = new WheelSpinResolver(wheelConfigContainer);
