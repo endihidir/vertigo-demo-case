@@ -117,7 +117,7 @@ namespace Game.Presenters
             var wheelType = WheelOfFortuneUtils.GetWheelType(_zoneModel.ZoneCounter);
             var wheelVisuals = _wheelSlotViewHandler.GetWheelVisuals(wheelType);
 
-            if (wheelType is WheelType.Bronze or WheelType.Gold)
+            if (wheelType is WheelType.Silver or WheelType.Gold)
                 ShowCollectView();
 
             UpdateWheelTitle(wheelType, wheelVisuals);

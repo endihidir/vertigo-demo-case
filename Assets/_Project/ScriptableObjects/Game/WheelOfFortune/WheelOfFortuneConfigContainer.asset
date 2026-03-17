@@ -15,6 +15,6 @@ MonoBehaviour:
   <OverrideZoneCount>k__BackingField: 0
   <CustomZoneCount>k__BackingField: 0
   <WheelConfigs>k__BackingField:
-  - {fileID: 11400000, guid: 71118547b05b15646a311396bfcc8e78, type: 2}
   - {fileID: 11400000, guid: 7430a0a847a28d948a8ea50d48387358, type: 2}
+  - {fileID: 11400000, guid: 71118547b05b15646a311396bfcc8e78, type: 2}
   - {fileID: 11400000, guid: 88fe2a3a609f1a748b3d4e7f6c93455f, type: 2}

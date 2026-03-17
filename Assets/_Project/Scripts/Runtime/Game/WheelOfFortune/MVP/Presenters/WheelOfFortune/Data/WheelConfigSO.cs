@@ -14,10 +14,10 @@ namespace Game.Configs
         [field: SerializeField] public float ValueMultiplier { get; private set; } = 1f;
         [field: SerializeField] public WheelVisualData WheelVisuals { get; private set; }
         
-        [field: SerializeField, ShowIf(nameof(IsSilver))] public Sprite BombIcon { get; private set; }
+        [field: SerializeField, ShowIf(nameof(IsBronze))] public Sprite BombIcon { get; private set; }
         [field: SerializeField] public List<WheelSlotData> WheelSlotData { get; private set; }
         
-        public bool IsSilver => WheelType == WheelType.Silver;
+        public bool IsBronze => WheelType == WheelType.Bronze;
         
         public WheelSlotData GetWheelSlotData(int slotIndex)
         { 
