@@ -13,8 +13,8 @@ namespace Game.Utils
         
         public static string GetTitle(WheelType wheelType, int zoneCount) => wheelType switch
         {
-            WheelType.Silver => $"SILVER SPIN",
             WheelType.Bronze => $"ZONE {zoneCount}",
+            WheelType.Silver => $"SILVER SPIN",
             WheelType.Gold => "GOLDEN SPIN",
             _ => string.Empty
         };
