@@ -1,9 +1,7 @@
-using Cysharp.Threading.Tasks;
 using Game.Configs;
 using Game.Data;
 using Game.Enums;
 using Game.Utils;
-using Game.Views;
 using UnityEngine;
 
 namespace Game.Handlers
@@ -19,35 +17,32 @@ namespace Game.Handlers
             _rewardVisualContainer = rewardVisualContainer;
         }
 
-        public WheelSlotData GetRewardSlotData(int slotIndex, int zoneCounter)
+        public WheelConfigSO GetWheelConfig(int zoneCounter)
         {
             var wheelType = WheelOfFortuneUtils.GetWheelType(zoneCounter);
-            
-            return _configContainer.GetWheelConfig(wheelType).GetWheelSlotData(slotIndex);
+            return _configContainer.GetWheelConfig(wheelType);
         }
-        
-        public SpinResultData GetSpinResultData(int slotIndex, int zoneCounter)
+
+        public SpinResultData GetSpinResultData(int zoneCounter, int slotIndex)
         {
-            var slotData = GetRewardSlotData(slotIndex, zoneCounter);
+            var slotData = GetWheelConfig(zoneCounter).GetWheelSlotData(slotIndex);
     
             if (slotData.IsBomb) return new SpinResultData(isBomb: true);
     
             var visualData = _rewardVisualContainer.GetVisualData(slotData.RewardDefinition.Id);
-            var calculatedValue = CalculateValue(slotIndex, zoneCounter);
-            var rewardText = FormatValue(slotIndex, calculatedValue, zoneCounter);
+            var calculatedValue = CalculateValue(zoneCounter, slotIndex);
+            var rewardText = slotData.GetValueFormat(calculatedValue);
     
             return new SpinResultData(isBomb: false, visualData.Icon, rewardText);
         }
 
-        public int CalculateValue(int slotIndex, int zoneCounter)
+        public int CalculateValue(int zoneCounter, int slotIndex)
         {
-            var wheelType = WheelOfFortuneUtils.GetWheelType(zoneCounter);
-
-            var definition = _configContainer.GetWheelConfig(wheelType).GetWheelSlotData(slotIndex).RewardDefinition;
+            var definition = GetWheelConfig(zoneCounter).GetWheelSlotData(slotIndex).RewardDefinition;
             
             if (definition.IsUniqueItem) return 0;
 
-            var wheelMultiplier = _configContainer.GetWheelConfig(wheelType).ValueMultiplier;
+            var wheelMultiplier = GetWheelConfig(zoneCounter).ValueMultiplier;
 
             return definition.ValueType switch
             {
@@ -55,13 +50,6 @@ namespace Game.Handlers
                 RewardValueType.Stackable => Mathf.RoundToInt(definition.BaseValue * wheelMultiplier),
                 _                         => 0
             };
-        }
-
-        public string FormatValue(int slotIndex, int calculatedValue, int zoneCounter)
-        {
-            var wheelType = WheelOfFortuneUtils.GetWheelType(zoneCounter);
-            
-            return _configContainer.GetWheelConfig(wheelType).GetWheelSlotData(slotIndex).GetValueFormat(calculatedValue);
         }
     }
 }

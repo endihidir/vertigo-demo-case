@@ -189,6 +189,7 @@ MonoBehaviour:
   <ExitButton>k__BackingField: {fileID: 6842643747324851243}
   <SpinButton>k__BackingField: {fileID: 8344493444541520170}
   <SpinAnimationModule>k__BackingField: {fileID: 1358465176768806287}
+  <SizeAnimationModule>k__BackingField: {fileID: 220161037103944144}
   <RewardHolders>k__BackingField:
   - {fileID: 8344493445958430212}
   - {fileID: 8344493444972076563}
@@ -198,7 +199,6 @@ MonoBehaviour:
   - {fileID: 8344493445253252785}
   - {fileID: 8344493444337163926}
   - {fileID: 8344493444769702220}
-  <SizeAnimationModule>k__BackingField: {fileID: 220161037103944144}
   <WheelZoneTitleText>k__BackingField: {fileID: 3398915714442603544}
   <WheelSpinnerImage>k__BackingField: {fileID: 8344493443968420935}
   <WheelIndicatorImage>k__BackingField: {fileID: 8344493445622768020}

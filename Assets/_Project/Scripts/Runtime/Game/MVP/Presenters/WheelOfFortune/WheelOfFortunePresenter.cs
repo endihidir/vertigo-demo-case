@@ -1,4 +1,5 @@
 using System;
+using Core.Utils;
 using Cysharp.Threading.Tasks;
 using Game.Data;
 using Game.Enums;
@@ -69,11 +70,12 @@ namespace Game.Presenters
             _view.WheelSpinView.SetSpinButtonInteractable(false);
             _view.WheelSpinView.SetExitButtonInteractable(false);
             await _view.WheelSpinView.SpinAnimationModule.SpinTo(_lastTargetSlotIndex);
-            ShowSpinResult(_wheelRewardProvider.GetSpinResultData(_lastTargetSlotIndex, _zoneModel.ZoneCounter));
+            ShowSpinResult();
         }
 
-        private void ShowSpinResult(SpinResultData result)
+        private void ShowSpinResult()
         {
+            var result = _wheelRewardProvider.GetSpinResultData(_zoneModel.ZoneCounter, _lastTargetSlotIndex);
             if (result.IsBomb) _view.WheelSpinResultView.InitBombPanel();
             else _view.WheelSpinResultView.InitRewardPanel(result.RewardIcon, result.RewardText);
             _view.WheelSpinResultView.SetActiveAsync(true).Forget();
@@ -81,8 +83,8 @@ namespace Game.Presenters
 
         private void OnClickNextButton()
         {
-            var slotData = _wheelRewardProvider.GetRewardSlotData(_lastTargetSlotIndex, _zoneModel.ZoneCounter);
-            var calculatedValue = _wheelRewardProvider.CalculateValue(_lastTargetSlotIndex, _zoneModel.ZoneCounter);
+            var slotData = _wheelRewardProvider.GetWheelConfig(_zoneModel.ZoneCounter).GetWheelSlotData(_lastTargetSlotIndex);
+            var calculatedValue = _wheelRewardProvider.CalculateValue(_zoneModel.ZoneCounter, _lastTargetSlotIndex);
             _wheelRewardDatabase.AddAmount(slotData.RewardDefinition.Id, calculatedValue);
             ResetToSpinView();
             _zoneModel.MoveNextZone();
@@ -141,8 +143,9 @@ namespace Game.Presenters
 
             foreach (var slotView in slotViews)
             {
-                var calculatedValue = _wheelRewardProvider.CalculateValue(slotView.SlotIndex, _zoneModel.ZoneCounter);
-                slotView.SetValue(_wheelRewardProvider.FormatValue(slotView.SlotIndex, calculatedValue, _zoneModel.ZoneCounter));
+                var calculatedValue = _wheelRewardProvider.CalculateValue(_zoneModel.ZoneCounter, slotView.SlotIndex);
+                var txt = _wheelRewardProvider.GetWheelConfig(_zoneModel.ZoneCounter).GetWheelSlotData(slotView.SlotIndex).GetValueFormat(calculatedValue);
+                slotView.SetValue(txt);
                 _view.WheelSpinView.PlaceSlot(slotView);
             }
         }

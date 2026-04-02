@@ -1,9 +1,12 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Game.Views
 {
     public class WheelRewardHolderView : MonoBehaviour
     {
-        [field: SerializeField] public int SlotIndex { get; private set; }
+        [field: SerializeField, ReadOnly] public int SlotIndex { get; private set; }
+        
+        public void SetSlotIndex(int index) => SlotIndex = index;
     }
 }

@@ -20,8 +20,8 @@ namespace Game.Views
         [field: SerializeField, ReadOnly] public Button ExitButton { get; private set; }
         [field: SerializeField, ReadOnly] public Button SpinButton { get; private set; }
         [field: SerializeField, ReadOnly] public WheelSpinAnimationModule SpinAnimationModule { get; private set; }
-        [field: SerializeField, ReadOnly] public WheelRewardHolderView[] RewardHolders { get; private set; }
         [field: SerializeField, ReadOnly] public SizeAnimationModule SizeAnimationModule { get; private set; }
+        [field: SerializeField, ReadOnly] public WheelRewardHolderView[] RewardHolders { get; private set; }
         
         [field: SerializeField] private TextMeshProUGUI WheelZoneTitleText { get; set; }
         [field: SerializeField] private Image WheelSpinnerImage { get; set; }
@@ -31,6 +31,10 @@ namespace Game.Views
         private void OnValidate()
         {
             RewardHolders = GetComponentsInChildren<WheelRewardHolderView>();
+            
+            for (var i = 0; i < RewardHolders.Length; i++)
+                RewardHolders[i].SetSlotIndex(i);
+            
             SpinAnimationModule = GetComponentInChildren<WheelSpinAnimationModule>();
             SizeAnimationModule = GetComponentInChildren<SizeAnimationModule>();
             
@@ -73,7 +77,7 @@ namespace Game.Views
                 return;
             }
         }
-        
+
         public void SetSpinButtonInteractable(bool active) => SpinButton.interactable = active;
         public void SetExitButtonInteractable(bool active) => ExitButton.interactable = active;
     }
